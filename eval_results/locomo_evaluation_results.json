@@ -1,0 +1,4031 @@
+{
+  "timestamp": "2025-11-30T01:48:52.289457",
+  "configuration": {
+    "llm_provider": "groq",
+    "llm_model": "llama-3.1-8b-instant",
+    "embedder_provider": "huggingface",
+    "embedder_model": "sentence-transformers/all-mpnet-base-v2",
+    "embedding_dims": 768,
+    "vector_store": "qdrant"
+  },
+  "statistics": {
+    "mean_accuracy": 0.27234502969655416,
+    "median_accuracy": 0.26666666666666666,
+    "std_accuracy": 0.017847431457035552,
+    "min_accuracy": 0.2538860103626943,
+    "max_accuracy": 0.2964824120603015,
+    "q1": 0.26027633851468046,
+    "q3": 0.2815745393634841
+  },
+  "dataset": {
+    "total_conversations": 3,
+    "evaluation_time_seconds": 2571.0849890708923
+  },
+  "accuracies": [
+    0.2964824120603015,
+    0.26666666666666666,
+    0.2538860103626943
+  ],
+  "per_conversation_results": {
+    "1": {
+      "accuracy": 0.2964824120603015,
+      "num_qa": 199,
+      "num_sessions": 54,
+      "sessions_added": 19,
+      "details": [
+        {
+          "question": "When did Caroline go to the LGBTQ support group?",
+          "expected": "7 may 2023",
+          "found": "caroline talked about her transgender journey at a school event last week",
+          "score": 0.7498975316423683,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie paint a sunrise?",
+          "expected": "2022",
+          "found": "melanie and her kids like nature-inspired paintings",
+          "score": 0.6010757078287426,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What fields would Caroline be likely to pursue in her educaton?",
+          "expected": "psychology, counseling certification",
+          "found": "plans to continue her education",
+          "score": 0.5295701257909576,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What did Caroline research?",
+          "expected": "adoption agencies",
+          "found": "caroline found peace",
+          "score": 0.5738966337921847,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What is Caroline's identity?",
+          "expected": "transgender woman",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.5969546029499969,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie run a charity race?",
+          "expected": "the sunday before 25 may 2023",
+          "found": "recently ran a charity race for mental health",
+          "score": 0.5968021330564551,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When is Melanie planning on going camping?",
+          "expected": "june 2023",
+          "found": "wants to plan a family outing or a special trip with melanie",
+          "score": 0.6780953551642384,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What is Caroline's relationship status?",
+          "expected": "single",
+          "found": "caroline is preparing for an lgbtq art show next month",
+          "score": 0.6102176484483994,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline give a speech at a school?",
+          "expected": "the week before 9 june 2023",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.6239679359560808,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline meet up with her friends, family, and mentors?",
+          "expected": "the week before 9 june 2023",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.6589916317591543,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "How long has Caroline had her current group of friends for?",
+          "expected": "4 years",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.664496146019699,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Where did Caroline move from 4 years ago?",
+          "expected": "sweden",
+          "found": "caroline found peace",
+          "score": 0.5682018579375185,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "How long ago was Caroline's 18th birthday?",
+          "expected": "10 years ago",
+          "found": "caroline and melanie spoke at 1:51 pm on 15 july, 2023",
+          "score": 0.5087252840118973,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What career path has Caroline decided to persue?",
+          "expected": "counseling or mental health for transgender people",
+          "found": "caroline is preparing for an lgbtq art show next month",
+          "score": 0.5824503417017644,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "Would Caroline still want to pursue counseling as a career if she hadn't received support growing up",
+          "expected": "likely no",
+          "found": "her motivation to pursue counseling is her own journey and the support she recei",
+          "score": 0.6414142658257178,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What activities does Melanie partake in?",
+          "expected": "pottery, camping, painting, swimming",
+          "found": "encourages melanie to take care of her mental health",
+          "score": 0.6670544719464324,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie sign up for a pottery class?",
+          "expected": "2 july 2023",
+          "found": "melanie signed up for a pottery class",
+          "score": 0.8724742508735106,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When is Caroline going to the transgender conference?",
+          "expected": "july 2023",
+          "found": "caroline talked about her transgender journey at a school event last week",
+          "score": 0.7575421178771156,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Where has Melanie camped?",
+          "expected": "beach, mountains, forest",
+          "found": "visited a café with melanie",
+          "score": 0.5948242154707579,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What do Melanie's kids like?",
+          "expected": "dinosaurs, nature",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.6735886426820353,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie go to the museum?",
+          "expected": "5 july 2023",
+          "found": "melanie signed up for a pottery class",
+          "score": 0.6490094425804507,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline have a picnic?",
+          "expected": "the week before 6 july 2023",
+          "found": "caroline found peace",
+          "score": 0.5478656435336342,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would Caroline likely have Dr. Seuss books on her bookshelf?",
+          "expected": "yes, since she collects classic children's books",
+          "found": "has classics, stories from different cultures, and educational books in her libr",
+          "score": 0.5597267128369536,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What books has Melanie read?",
+          "expected": "\"nothing is impossible\", \"charlotte's web\"",
+          "found": "melanie finds solace in reading and painting",
+          "score": 0.5811486234498062,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What does Melanie do to destress?",
+          "expected": "running, pottery",
+          "found": "encourages melanie to take care of her mental health",
+          "score": 0.8005016659288173,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline go to the LGBTQ conference?",
+          "expected": "10 july 2023",
+          "found": "caroline talked about her transgender journey at a school event last week",
+          "score": 0.7375892150786441,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie read the book \"nothing is impossible\"?",
+          "expected": "2022",
+          "found": "book taught her about self-acceptance and finding support",
+          "score": 0.5139289442280308,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would Caroline pursue writing as a career option?",
+          "expected": "likely no; though she likes reading, she wants to be a counselor",
+          "found": "caroline is preparing for an lgbtq art show next month",
+          "score": 0.5584839746374082,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline go to the adoption meeting?",
+          "expected": "the friday before 15 july 2023",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.8485114932698924,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie go to the pottery workshop?",
+          "expected": "the friday before 15 july 2023",
+          "found": "melanie signed up for a pottery class",
+          "score": 0.8362625774544419,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would Melanie be considered a member of the LGBTQ community?",
+          "expected": "likely no, she does not refer to herself as part of it",
+          "found": "caroline encouraged students to get involved in the lgbtq community",
+          "score": 0.5423753179460373,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie go camping in June?",
+          "expected": "the week before 27 june 2023",
+          "found": "wants to plan a family outing or a special trip with melanie",
+          "score": 0.6182014986515889,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What LGBTQ+ events has Caroline participated in?",
+          "expected": "pride parade, school speech, support group",
+          "found": "caroline encouraged students to get involved in the lgbtq community",
+          "score": 0.7385798071024878,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline go to a pride parade during the summer?",
+          "expected": "the week before 3 july 2023",
+          "found": "caroline felt accepting and happy at the pride parade",
+          "score": 0.7039242107544434,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What events has Caroline participated in to help children?",
+          "expected": "mentoring program, school speech",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.636695790564233,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie go camping in July?",
+          "expected": "two weekends before 17 july 2023",
+          "found": "wants to plan a family outing or a special trip with melanie",
+          "score": 0.6085126155643388,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline join a mentorship program?",
+          "expected": "the weekend before 17 july 2023",
+          "found": "caroline has joined a mentorship program for lgbtq youth",
+          "score": 0.7203672962036654,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What did Melanie paint recently?",
+          "expected": "sunset",
+          "found": "caroline is interested in melanie's paintings",
+          "score": 0.667817337934968,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What activities has Melanie done with her family?",
+          "expected": "pottery, painting, camping, museum, swimming, hiking",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.6698240278999378,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "In what ways is Caroline participating in the LGBTQ community?",
+          "expected": "joining activist group, going to pride parades, participating in an art show, me",
+          "found": "caroline encouraged students to get involved in the lgbtq community",
+          "score": 0.8252529584434403,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "How many times has Melanie gone to the beach in 2023?",
+          "expected": "2",
+          "found": "caught up with melanie at 8:18 pm on 6 july, 2023",
+          "score": 0.6229350491710013,
+          "category": 1,
+          "correct": true
+        },
+        {
+          "question": "When did Caroline join a new activist group?",
+          "expected": "the tuesday before 20 july 2023",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.6179419117791751,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would Melanie be more interested in going to a national park or a theme park?",
+          "expected": "national park; she likes the outdoors",
+          "found": "wants to plan a family outing or a special trip with melanie",
+          "score": 0.6128038248845122,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What kind of art does Caroline make?",
+          "expected": "abstract art",
+          "found": "caroline recently started abstract art",
+          "score": 0.7904841863489733,
+          "category": 1,
+          "correct": true
+        },
+        {
+          "question": "When is Melanie's daughter's birthday?",
+          "expected": "13 august",
+          "found": "wants to plan a family outing or a special trip with melanie",
+          "score": 0.5941772214586286,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline attend a pride parade in August?",
+          "expected": "the friday before 14 august 2023",
+          "found": "caroline felt accepting and happy at the pride parade",
+          "score": 0.7283612637416863,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would Melanie be considered an ally to the transgender community?",
+          "expected": "yes, she is supportive",
+          "found": "caroline has been supporting a transgender teen",
+          "score": 0.6228008010139774,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "Who supports Caroline when she has a negative experience?",
+          "expected": "her mentors, family, and friends",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.7401814772483892,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What types of pottery have Melanie and her kids made?",
+          "expected": "bowls, cup",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.793026546202514,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline and Melanie go to a pride fesetival together?",
+          "expected": "2022",
+          "found": "caroline and melanie spoke at 1:51 pm on 15 july, 2023",
+          "score": 0.6322775385050708,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What would Caroline's political leaning likely be?",
+          "expected": "liberal",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.5404775610721066,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What has Melanie painted?",
+          "expected": "horse, sunset, sunrise",
+          "found": "caroline is interested in melanie's paintings",
+          "score": 0.7072065706824742,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What are Melanie's pets' names?",
+          "expected": "oliver, luna, bailey",
+          "found": "has pets",
+          "score": 0.6097027559261399,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline apply to adoption agencies?",
+          "expected": "the week of 23 august 2023",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.7457094620746112,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline draw a self-portrait?",
+          "expected": "the week before 23 august 2023",
+          "found": "caroline loved seeing kids express their personalities through art",
+          "score": 0.6676906585220378,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What subject have Caroline and Melanie both painted?",
+          "expected": "sunsets",
+          "found": "caroline is interested in melanie's paintings",
+          "score": 0.7925231641742461,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What symbols are important to Caroline?",
+          "expected": "rainbow flag, transgender symbol",
+          "found": "caroline's painting for the art show is about unity and strength",
+          "score": 0.583838025563182,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline encounter people on a hike and have a negative experience?",
+          "expected": "the week before 25 august 2023",
+          "found": "caroline found peace",
+          "score": 0.5663615077482526,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie make a plate in pottery class?",
+          "expected": "24 august 2023",
+          "found": "melanie signed up for a pottery class",
+          "score": 0.783691629348391,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would Caroline be considered religious?",
+          "expected": "somewhat, but not extremely religious",
+          "found": "caroline found peace",
+          "score": 0.5506106715280518,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What instruments does Melanie play?",
+          "expected": "clarinet and violin",
+          "found": "loves music and playing the guitar",
+          "score": 0.518087603011941,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What musical artists/bands has Melanie seen?",
+          "expected": "summer sounds, matt patterson",
+          "found": "visited a café with melanie",
+          "score": 0.522194660857169,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie go to the park?",
+          "expected": "27 august 2023",
+          "found": "visited a café with melanie",
+          "score": 0.6125158848996886,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When is Caroline's youth center putting on a talent show?",
+          "expected": "september 2023",
+          "found": "planning a talent show for the kids at the youth center",
+          "score": 0.6670668856672775,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would Melanie likely enjoy the song \"The Four Seasons\" by Vivaldi?",
+          "expected": "yes; it's classical music",
+          "found": "melanie praises caroline's artwork",
+          "score": 0.48132787223647444,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What are some changes Caroline has faced during her transition journey?",
+          "expected": "changes to her body, losing unsupportive friends",
+          "found": "caroline gave a voice to the trans community",
+          "score": 0.6198254837685481,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What does Melanie do with her family on hikes?",
+          "expected": "roast marshmallows, tell stories",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.575475975073076,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline go biking with friends?",
+          "expected": "the weekend before 13 september 2023",
+          "found": "biked with friends",
+          "score": 0.6105693899863832,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "How long has Melanie been practicing art?",
+          "expected": "since 2016",
+          "found": "caroline recently started abstract art",
+          "score": 0.626168852044701,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What personality traits might Melanie say Caroline has?",
+          "expected": "thoughtful, authentic, driven",
+          "found": "melanie admires caroline's courage",
+          "score": 0.6917923413467717,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What transgender-specific events has Caroline attended?",
+          "expected": "poetry reading, conference",
+          "found": "caroline talked about her transgender journey at a school event last week",
+          "score": 0.7859130446839204,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What book did Melanie read from Caroline's suggestion?",
+          "expected": "\"becoming nicole\"",
+          "found": "melanie admires caroline's courage",
+          "score": 0.697617551640796,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie's friend adopt a child?",
+          "expected": "2022",
+          "found": "melanie knows someone who successfully adopted",
+          "score": 0.7336941896455302,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie get hurt?",
+          "expected": "september 2023",
+          "found": "melanie recently experienced a setback due to an injury",
+          "score": 0.7740506699351294,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie's family go on a roadtrip?",
+          "expected": "the weekend before 20 october 2023",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.6383641115680612,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "How many children does Melanie have?",
+          "expected": "3",
+          "found": "melanie knows someone who successfully adopted",
+          "score": 0.5916790692413711,
+          "category": 1,
+          "correct": true
+        },
+        {
+          "question": "When did Melanie go on a hike after the roadtrip?",
+          "expected": "19 october 2023",
+          "found": "melanie has been running to destress and clear her mind",
+          "score": 0.596336789021443,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "Would Melanie go on another roadtrip soon?",
+          "expected": "likely no; since this one went badly",
+          "found": "melanie has been running to destress and clear her mind",
+          "score": 0.607283191449626,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What items has Melanie bought?",
+          "expected": "figurines, shoes",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.5844621815587709,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Caroline pass the adoption interview?",
+          "expected": "the friday before 22 october 2023",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.7821054279363748,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Melanie buy the figurines?",
+          "expected": "21 october 2023",
+          "found": "caroline is interested in melanie's paintings",
+          "score": 0.5294244414754063,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would Caroline want to move back to her home country soon?",
+          "expected": "no; she's in the process of adopting children.",
+          "found": "caroline found peace",
+          "score": 0.5582478188090295,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What did the charity race raise awareness for?",
+          "expected": "mental health",
+          "found": "recently ran a charity race for mental health",
+          "score": 0.6839141395558357,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What did Melanie realize after the charity race?",
+          "expected": "self-care is important",
+          "found": "melanie has been running to destress and clear her mind",
+          "score": 0.7200999560502735,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does Melanie prioritize self-care?",
+          "expected": "by carving out some me-time each day for activities like running, reading, or pl",
+          "found": "encourages melanie to take care of her mental health",
+          "score": 0.779857864834771,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What are Caroline's plans for the summer?",
+          "expected": "researching adoption agencies",
+          "found": "caroline is preparing for an lgbtq art show next month",
+          "score": 0.6485158763207506,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What type of individuals does the adoption agency Caroline is considering support?",
+          "expected": "lgbtq+ individuals",
+          "found": "received help from an adoption assistance group",
+          "score": 0.6587077058213988,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did Caroline choose the adoption agency?",
+          "expected": "because of their inclusivity and support for lgbtq+ individuals",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.7692396987857131,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is Caroline excited about in the adoption process?",
+          "expected": "creating a family for kids who need one",
+          "found": "caroline is excited about adopting and becoming a mother",
+          "score": 0.8701776123831804,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Melanie think about Caroline's decision to adopt?",
+          "expected": "she thinks caroline is doing something amazing and will be an awesome mom",
+          "found": "caroline gave melanie advice on how to get started with the adoption process",
+          "score": 0.8129585461284807,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How long have Mel and her husband been married?",
+          "expected": "mel and her husband have been married for 5 years.",
+          "found": "melanie's favorite part of her wedding was marrying her partner",
+          "score": 0.5107141635673376,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Caroline's necklace symbolize?",
+          "expected": "love, faith, and strength",
+          "found": "the necklace represents love, faith, and strength",
+          "score": 0.7415200314636938,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What country is Caroline's grandma from?",
+          "expected": "sweden",
+          "found": "has a special necklace from her grandmother in sweden",
+          "score": 0.5699030383343672,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What was grandma's gift to Caroline?",
+          "expected": "necklace",
+          "found": "caroline loved seeing kids express their personalities through art",
+          "score": 0.5635361850950802,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What is Melanie's hand-painted bowl a reminder of?",
+          "expected": "art and self-expression",
+          "found": "the hand-painted bowl reminds her of art and self-expression",
+          "score": 0.7604953695395578,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What did Melanie and her family do while camping?",
+          "expected": "explored nature, roasted marshmallows, and went on a hike",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.6808389899541523,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of counseling and mental health services is Caroline interested in pursuing?",
+          "expected": "working with trans people, helping them accept themselves and supporting their m",
+          "found": "caroline has joined a mentorship program for lgbtq youth",
+          "score": 0.6622081622105563,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What workshop did Caroline attend recently?",
+          "expected": "lgbtq+ counseling workshop",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.6465837389698523,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What was discussed in the LGBTQ+ counseling workshop?",
+          "expected": "therapeutic methods and how to best work with trans people",
+          "found": "attended an lgbtq+ counseling workshop",
+          "score": 0.8563171205010371,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What motivated Caroline to pursue counseling?",
+          "expected": "her own journey and the support she received, and how counseling improved her li",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.6660766701425376,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of place does Caroline want to create for people?",
+          "expected": "a safe and inviting place for people to grow",
+          "found": "caroline is preparing for an lgbtq art show next month",
+          "score": 0.5603950449247275,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Did Melanie make the black and white bowl in the photo?",
+          "expected": "yes",
+          "found": "has a hand-painted bowl made by a friend on her 18th birthday",
+          "score": 0.5478849169623626,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of books does Caroline have in her library?",
+          "expected": "kids' books - classics, stories from different cultures, educational books",
+          "found": "has classics, stories from different cultures, and educational books in her libr",
+          "score": 0.6544319397837264,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What was Melanie's favorite book from her childhood?",
+          "expected": "\"charlotte's web\"",
+          "found": "favorite childhood book is 'charlotte's web'",
+          "score": 0.6023506382276893,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What book did Caroline recommend to Melanie?",
+          "expected": "\"becoming nicole\"",
+          "found": "melanie admires caroline's courage",
+          "score": 0.724286369852758,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Caroline take away from the book \"Becoming Nicole\"?",
+          "expected": "lessons on self-acceptance and finding support",
+          "found": "caroline is inspired to adopt in the future",
+          "score": 0.6226695625893474,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What are the new shoes that Melanie got used for?",
+          "expected": "running",
+          "found": "melanie recently experienced a setback due to an injury",
+          "score": 0.44139779591086853,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is Melanie's reason for getting into running?",
+          "expected": "to de-stress and clear her mind",
+          "found": "melanie has been running to destress and clear her mind",
+          "score": 0.6977449775232291,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Melanie say running has been great for?",
+          "expected": "her mental health",
+          "found": "melanie has been running to destress and clear her mind",
+          "score": 0.6656251030874778,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What did Mel and her kids make during the pottery workshop?",
+          "expected": "pots",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.8233815900610929,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What kind of pot did Mel and her kids make with clay?",
+          "expected": "a cup with a dog face on it",
+          "found": "melanie and her kids made their own pots",
+          "score": 0.7509004381144314,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What creative project do Mel and her kids do together besides pottery?",
+          "expected": "painting",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.7777474717513821,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Mel and her kids paint in their latest project in July 2023?",
+          "expected": "a sunset with a palm tree",
+          "found": "melanie and her kids like nature-inspired paintings",
+          "score": 0.6796694168199778,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Caroline see at the council meeting for adoption?",
+          "expected": "many people wanting to create loving homes for children in need",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.9058519803632141,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What do sunflowers represent according to Caroline?",
+          "expected": "warmth and happiness",
+          "found": "flowers remind melanie of her wedding",
+          "score": 0.5169275818190181,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why are flowers important to Melanie?",
+          "expected": "they remind her to appreciate the small moments and were a part of her wedding d",
+          "found": "flowers remind melanie of her wedding",
+          "score": 0.7325593401879267,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What inspired Caroline's painting for the art show?",
+          "expected": "visiting an lgbtq center and wanting to capture unity and strength",
+          "found": "caroline's painting for the art show is about unity and strength",
+          "score": 0.7767916234247343,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How often does Melanie go to the beach with her kids?",
+          "expected": "once or twice a year",
+          "found": "recently went to the beach with her kids",
+          "score": 0.6676408042362791,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Melanie and her family see during their camping trip last year?",
+          "expected": "perseid meteor shower",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.6299204725622639,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did Melanie feel while watching the meteor shower?",
+          "expected": "in awe of the universe",
+          "found": "perseid meteor shower made her feel in awe of the universe",
+          "score": 0.6820221167130551,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "Whose birthday did Melanie celebrate recently?",
+          "expected": "melanie's daughter",
+          "found": "melanie's wedding day was full of love and joy",
+          "score": 0.5901466707199352,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Who performed at the concert at Melanie's daughter's birthday?",
+          "expected": "matt patterson",
+          "found": "had a great time at a concert celebrating her daughter's birthday",
+          "score": 0.6614499711378866,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did Melanie choose to use colors and patterns in her pottery project?",
+          "expected": "she wanted to catch the eye and make people smile.",
+          "found": "melanie signed up for a pottery class",
+          "score": 0.668214305708696,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What pet does Caroline have?",
+          "expected": "guinea pig",
+          "found": "has pets",
+          "score": 0.6058278029507815,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What pets does Melanie have?",
+          "expected": "two cats and a dog",
+          "found": "has pets",
+          "score": 0.6927482460549155,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Where did Oliver hide his bone once?",
+          "expected": "in melanie's slipper",
+          "found": "has a guinea pig named oscar",
+          "score": 0.2772335988295732,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What activity did Caroline used to do with her dad?",
+          "expected": "horseback riding",
+          "found": "caroline loved seeing kids express their personalities through art",
+          "score": 0.633478074310359,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Caroline make for a local church?",
+          "expected": "a stained glass window",
+          "found": "caroline found peace",
+          "score": 0.5941458824074496,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Caroline find in her neighborhood during her walk?",
+          "expected": "a rainbow sidewalk",
+          "found": "caroline found peace",
+          "score": 0.6395159702189082,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Which song motivates Caroline to be courageous?",
+          "expected": "brave by sara bareilles",
+          "found": "melanie admires caroline's courage",
+          "score": 0.6229461931772247,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Which  classical musicians does Melanie enjoy listening to?",
+          "expected": "bach and mozart",
+          "found": "caroline is interested in melanie's paintings",
+          "score": 0.4945976462258498,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Who is Melanie a fan of in terms of modern music?",
+          "expected": "ed sheeran",
+          "found": "melanie praises caroline's artwork",
+          "score": 0.5136909132637599,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How long has Melanie been creating art?",
+          "expected": "7 years",
+          "found": "caroline recently started abstract art",
+          "score": 0.6945643311598586,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What precautionary sign did Melanie see at the café?",
+          "expected": "a sign stating that someone is not being able to leave",
+          "found": "visited a café with melanie",
+          "score": 0.562290464046902,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What advice does Caroline give for getting started with adoption?",
+          "expected": "do research, find an adoption agency or lawyer, gather necessary documents, and ",
+          "found": "caroline gave melanie advice on how to get started with the adoption process",
+          "score": 0.8371755875668336,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What setback did Melanie face in October 2023?",
+          "expected": "she got hurt and had to take a break from pottery.",
+          "found": "melanie recently experienced a setback due to an injury",
+          "score": 0.8240213213550396,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Melanie do to keep herself busy during her pottery break?",
+          "expected": "read a book and paint.",
+          "found": "melanie signed up for a pottery class",
+          "score": 0.8125869327309048,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What painting did Melanie show to Caroline on October 13, 2023?",
+          "expected": "a painting inspired by sunsets with a pink sky.",
+          "found": "caroline is interested in melanie's paintings",
+          "score": 0.7868710046317862,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of painting did Caroline share with Melanie on October 13, 2023?",
+          "expected": "an abstract painting with blue streaks on a wall.",
+          "found": "caroline is interested in melanie's paintings",
+          "score": 0.7797572795786127,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What was the poetry reading that Caroline attended about?",
+          "expected": "it was a transgender poetry reading where transgender people shared their storie",
+          "found": "caroline's artwork is inspired by a poetry reading celebrating transgender ident",
+          "score": 0.6323508388338499,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did the posters at the poetry reading say?",
+          "expected": "\"trans lives matter\"",
+          "found": "caroline's artwork is inspired by a poetry reading celebrating transgender ident",
+          "score": 0.5308335203847854,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Caroline's drawing symbolize for her?",
+          "expected": "freedom and being true to herself.",
+          "found": "caroline loved seeing kids express their personalities through art",
+          "score": 0.7176682294475897,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How do Melanie and Caroline describe their journey through life together?",
+          "expected": "an ongoing adventure of learning and growing.",
+          "found": "melanie admires caroline's courage",
+          "score": 0.6893239798856337,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What happened to Melanie's son on their road trip?",
+          "expected": "he got into an accident",
+          "found": "melanie recently experienced a setback due to an injury",
+          "score": 0.5326022820060092,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did Melanie's son handle the accident?",
+          "expected": "he was scared but reassured by his family",
+          "found": "melanie recently experienced a setback due to an injury",
+          "score": 0.5913223878330509,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did Melanie feel about her family after the accident?",
+          "expected": "they are important and mean the world to her",
+          "found": "melanie's family has been supportive during her move",
+          "score": 0.6840347419590589,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did Melanie's children handle the accident?",
+          "expected": "they were scared but resilient",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.6195378791926314,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did Melanie feel after the accident?",
+          "expected": "grateful and thankful for her family",
+          "found": "melanie recently experienced a setback due to an injury",
+          "score": 0.6892240127352338,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What was Melanie's reaction to her children enjoying the Grand Canyon?",
+          "expected": "she was happy and thankful",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.5746889665608366,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What do Melanie's family give her?",
+          "expected": "strength and motivation",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.671075423939749,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did Melanie feel about her family supporting her?",
+          "expected": "she appreciated them a lot",
+          "found": "melanie's family has been supportive during her move",
+          "score": 0.808159092891497,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Melanie do after the road trip to relax?",
+          "expected": "went on a nature walk or hike",
+          "found": "melanie has been running to destress and clear her mind",
+          "score": 0.6631406107129024,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Caroline realize after her charity race?",
+          "expected": "",
+          "found": "melanie praised caroline for spreading awareness and inspiring others",
+          "score": 0.6544368812168182,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What are Melanie's plans for the summer with respect to adoption?",
+          "expected": "",
+          "found": "melanie knows someone who successfully adopted",
+          "score": 0.6968900757176419,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What type of individuals does the adoption agency Melanie is considering support?",
+          "expected": "",
+          "found": "received help from an adoption assistance group",
+          "score": 0.6679583669107456,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did Melanie choose the adoption agency?",
+          "expected": "",
+          "found": "caroline gave melanie advice on how to get started with the adoption process",
+          "score": 0.7341997175255004,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What is Melanie excited about in her adoption process?",
+          "expected": "",
+          "found": "melanie knows someone who successfully adopted",
+          "score": 0.7594672875071955,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What does Melanie's necklace symbolize?",
+          "expected": "",
+          "found": "the necklace represents love, faith, and strength",
+          "score": 0.7388976667870877,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What country is Melanie's grandma from?",
+          "expected": "",
+          "found": "has a special necklace from her grandmother in sweden",
+          "score": 0.5520173851145473,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What was grandma's gift to Melanie?",
+          "expected": "",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.6280470990589089,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What was grandpa's gift to Caroline?",
+          "expected": "",
+          "found": "caroline expressed gratitude for the support she has received",
+          "score": 0.535581063122325,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What is Caroline's hand-painted bowl a reminder of?",
+          "expected": "",
+          "found": "the hand-painted bowl reminds her of art and self-expression",
+          "score": 0.7391130690792637,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Caroline and her family do while camping?",
+          "expected": "",
+          "found": "caroline found peace",
+          "score": 0.5346008040126854,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What kind of counseling and mental health services is Melanie interested in pursuing?",
+          "expected": "",
+          "found": "encourages melanie to take care of her mental health",
+          "score": 0.7119938655004177,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What kind of counseling workshop did Melanie attend recently?",
+          "expected": "",
+          "found": "encourages melanie to take care of her mental health",
+          "score": 0.6878192125532949,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What motivated Melanie to pursue counseling?",
+          "expected": "",
+          "found": "encourages melanie to take care of her mental health",
+          "score": 0.800160181729837,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What kind of place does Melanie want to create for people?",
+          "expected": "",
+          "found": "encourages melanie to take care of her mental health",
+          "score": 0.5668395211925112,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Did Caroline make the black and white bowl in the photo?",
+          "expected": "no",
+          "found": "has a hand-painted bowl made by a friend on her 18th birthday",
+          "score": 0.5488474065679826,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What are the new shoes that Caroline got used for?",
+          "expected": "",
+          "found": "caroline is preparing for an lgbtq art show next month",
+          "score": 0.49838226445606504,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What is Caroline's reason for getting into running?",
+          "expected": "",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.5598393993893551,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What does Caroline say running has been great for?",
+          "expected": "",
+          "found": "melanie has been running to destress and clear her mind",
+          "score": 0.5198028335285203,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Melanie see at the council meeting for adoption?",
+          "expected": "",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.7461403424437467,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What inspired Melanie's painting for the art show?",
+          "expected": "",
+          "found": "melanie thinks caroline's painting for the art show is awesome",
+          "score": 0.725863043979503,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What inspired Caroline's sculpture for the art show?",
+          "expected": "",
+          "found": "caroline recently started abstract art",
+          "score": 0.7409713353669996,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How often does Caroline go to the beach with her kids?",
+          "expected": "",
+          "found": "recently went to the beach with her kids",
+          "score": 0.6444134955615539,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Caroline and her family see during their camping trip last year?",
+          "expected": "",
+          "found": "family camping trip is the highlight of their summer",
+          "score": 0.5536218747769946,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How did Caroline feel while watching the meteor shower?",
+          "expected": "",
+          "found": "perseid meteor shower made her feel in awe of the universe",
+          "score": 0.679223818353578,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did Caroline choose to use colors and patterns in her pottery project?",
+          "expected": "",
+          "found": "caroline loved seeing kids express their personalities through art",
+          "score": 0.6396530908029132,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Is Oscar Melanie's pet?",
+          "expected": "no",
+          "found": "has a guinea pig named oscar",
+          "score": 0.681515219055149,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Where did Oscar hide his bone once?",
+          "expected": "",
+          "found": "has a guinea pig named oscar",
+          "score": 0.5044314942960044,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What activity did Melanie used to do with her dad?",
+          "expected": "",
+          "found": "melanie took her kids to a pottery workshop",
+          "score": 0.6484829500786269,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Melanie make for a local church?",
+          "expected": "",
+          "found": "melanie signed up for a pottery class",
+          "score": 0.6638832527656962,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Melanie find in her neighborhood during her walk?",
+          "expected": "",
+          "found": "melanie has been running to destress and clear her mind",
+          "score": 0.6023893547772965,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Which song motivates Melanie to be courageous?",
+          "expected": "",
+          "found": "melanie admires caroline's courage",
+          "score": 0.638268146019369,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What type of instrument does Caroline play?",
+          "expected": "",
+          "found": "loves music and playing the guitar",
+          "score": 0.5126236925462239,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Which classical musicians does Caroline enjoy listening to?",
+          "expected": "",
+          "found": "melanie praises caroline's artwork",
+          "score": 0.5058080211312308,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Who is Caroline a fan of in terms of modern music?",
+          "expected": "",
+          "found": "melanie praises caroline's artwork",
+          "score": 0.5486612190004769,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What precautionary sign did Caroline see at the café?",
+          "expected": "",
+          "found": "caroline found peace",
+          "score": 0.5388808666780502,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What setback did Caroline face recently?",
+          "expected": "",
+          "found": "melanie recently experienced a setback due to an injury",
+          "score": 0.6094090836557039,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What does Caroline do to keep herself busy during her pottery break?",
+          "expected": "",
+          "found": "melanie signed up for a pottery class",
+          "score": 0.6753505405925708,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What was the poetry reading that Melanie attended about?",
+          "expected": "",
+          "found": "melanie finds solace in reading and painting",
+          "score": 0.6176710406424322,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What happened to Caroline's son on their road trip?",
+          "expected": "",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.5347159754638975,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How did Caroline's son handle the accident?",
+          "expected": "",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.5624875787392521,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How did Caroline feel about her family after the accident?",
+          "expected": "",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.6517326214197252,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How did Caroline's children handle the accident?",
+          "expected": "",
+          "found": "caroline attended a council meeting for adoption",
+          "score": 0.5756639569747595,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How did Caroline feel after the accident?",
+          "expected": "",
+          "found": "caroline found peace",
+          "score": 0.6246825881707283,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What was Caroline's reaction to her children enjoying the Grand Canyon?",
+          "expected": "",
+          "found": "caroline loved seeing kids express their personalities through art",
+          "score": 0.5082801501005956,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Caroline do after the road trip to relax?",
+          "expected": "",
+          "found": "caroline found peace",
+          "score": 0.6189249125174705,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What does Caroline love most about camping with her family?",
+          "expected": "",
+          "found": "caroline's friends, family, and mentors are her support system",
+          "score": 0.5836483640097956,
+          "category": 5,
+          "correct": true
+        }
+      ]
+    },
+    "2": {
+      "accuracy": 0.26666666666666666,
+      "num_qa": 105,
+      "num_sessions": 38,
+      "sessions_added": 19,
+      "details": [
+        {
+          "question": "When Jon has lost his job as a banker?",
+          "expected": "19 january, 2023",
+          "found": "jon's business has rewards",
+          "score": 0.6316641823559417,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When Gina has lost her job at Door Dash?",
+          "expected": "january, 2023",
+          "found": "gina has a store",
+          "score": 0.5321525171394021,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "How do Jon and Gina both like to destress?",
+          "expected": "by dancing",
+          "found": "jon and gina discussed their methods of staying organized and motivated",
+          "score": 0.6305617788699241,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What do Jon and Gina both have in common?",
+          "expected": "they lost their jobs and decided to start their own businesses.",
+          "found": "jon and gina decided to support each other in reaching their goals",
+          "score": 0.6929371730082898,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "Why did Jon decide to start his dance studio?",
+          "expected": "he lost his job and decided to start his own business to share his passion.",
+          "found": "jon has a dance studio",
+          "score": 0.8626257062672382,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What Jon thinks the ideal dance studio should look like?",
+          "expected": "by the water, with natural light and marley flooring",
+          "found": "jon has a dance studio",
+          "score": 0.834363612892223,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When is Jon's group performing at a festival?",
+          "expected": "february, 2023",
+          "found": "upcoming performance at a festival",
+          "score": 0.5980558780811613,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Gina launch an ad campaign for her store?",
+          "expected": "29 january, 2023",
+          "found": "gina is launching an ad campaign for her clothing store",
+          "score": 0.8376360077386761,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When was Jon in Paris?",
+          "expected": "28 january 2023",
+          "found": "jon and gina caught up on their recent activities at 2:35 pm on 16 march 2023",
+          "score": 0.49102315483004455,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Which city have both Jean and John visited?",
+          "expected": "rome",
+          "found": "jon attends networking events",
+          "score": 0.41994496109353274,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Gina team up with a local artist for some cool designs?",
+          "expected": "february, 2023",
+          "found": "caroline recently started abstract art",
+          "score": 0.6505968750060614,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Gina get her tattoo?",
+          "expected": "a few years ago",
+          "found": "gina shared about a new fashion piece for her store",
+          "score": 0.5602013949622053,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Jon start to go to the gym?",
+          "expected": "march, 2023",
+          "found": "jon started going to the gym to balance his ventures",
+          "score": 0.8045955209264463,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Gina open her online clothing store?",
+          "expected": "16 march, 2023",
+          "found": "gina has a store",
+          "score": 0.7620175189985318,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Jon start expanding his studio's social media presence?",
+          "expected": "april, 2023",
+          "found": "jon is expanding his social media presence",
+          "score": 0.7545659308662542,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Jon host a dance competition?",
+          "expected": "may, 2023",
+          "found": "jon has a dance studio",
+          "score": 0.7086557556086934,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Jon go to a fair to get more exposure for his dance studio?",
+          "expected": "24 april, 2023",
+          "found": "jon has a dance studio",
+          "score": 0.7792391593436792,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Why did Gina decide to start her own clothing store?",
+          "expected": "she always loved fashion trends and finding unique pieces and she lost her job s",
+          "found": "gina has a store",
+          "score": 0.737152196244057,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "Do Jon and Gina start businesses out of what they love?",
+          "expected": "yes",
+          "found": "jon discussed business endeavors with gina",
+          "score": 0.7517627080730538,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Gina interview for a design internship?",
+          "expected": "10 may, 2023",
+          "found": "has a design internship interview",
+          "score": 0.7595291357450922,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Gina get accepted for the design internship?",
+          "expected": "27 may, 2023",
+          "found": "gina got a fashion internship with an international company",
+          "score": 0.7505963861735516,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Jon start reading \"The Lean Startup\"?",
+          "expected": "may, 2023",
+          "found": "jon is facing challenges in his entrepreneurial journey",
+          "score": 0.5916375700039211,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Gina develop a video presentation to teach how to style her fashion pieces? ",
+          "expected": "june, 2023",
+          "found": "gina mentioned creating a video presentation for styling fashion pieces",
+          "score": 0.8345145749183189,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "How did Gina promote her clothes store?",
+          "expected": "worked with an artist to make unique fashion pieces, made limited-edition sweats",
+          "found": "gina shared about a new fashion piece for her store",
+          "score": 0.7853736633062081,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "Which events has Jon participated in to promote his business venture?",
+          "expected": "fair, networking events, dance competition",
+          "found": "jon attends networking events",
+          "score": 0.6914594791162956,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What does Jon's dance studio offer?",
+          "expected": "one-on-one metoring and training to dancers,  workshops and classes to local sch",
+          "found": "jon has a dance studio",
+          "score": 0.8659161932111834,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Jon receive mentorship to promote his venture?",
+          "expected": "15 june, 2023",
+          "found": "jon is facing challenges in his entrepreneurial journey",
+          "score": 0.6484522461035785,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Did Jon and Gina both participate in dance competitions?",
+          "expected": "yes",
+          "found": "gina commended jon for his venture into opening a dance studio",
+          "score": 0.6642645470290668,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When was Jon in Rome?",
+          "expected": "june 2023",
+          "found": "jon started going to the gym to balance his ventures",
+          "score": 0.5033953051877178,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Which cities has Jon visited?",
+          "expected": "paris, rome",
+          "found": "jon is expanding his social media presence",
+          "score": 0.5068277311252047,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When Jon is planning to open his dance studio?",
+          "expected": "20 june, 2023",
+          "found": "jon has a dance studio",
+          "score": 0.8334907154105482,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "How long did it take for Jon to open his studio?",
+          "expected": "six months",
+          "found": "jon displayed his studio at a fair",
+          "score": 0.5989455303750597,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Gina design a limited collection of hoodies?",
+          "expected": "june 2023",
+          "found": "gina has a collection of hoodies",
+          "score": 0.787900400727116,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Jon visit networking events for his store?",
+          "expected": "20 june, 2023",
+          "found": "jon attends networking events",
+          "score": 0.740551117000797,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Gina start being recognized by fashion editors?",
+          "expected": "july 2023",
+          "found": "gina shared her fashion success",
+          "score": 0.7624620252472186,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Jon start learning marketing and analytics tools?",
+          "expected": "july, 2023",
+          "found": "jon is facing challenges in his entrepreneurial journey",
+          "score": 0.5233697717538467,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Jon and Gina decide to collaborate to create dance content?",
+          "expected": "21 july 2023",
+          "found": "gina commended jon for his venture into opening a dance studio",
+          "score": 0.6807481651067271,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Gina mention Shia Labeouf?",
+          "expected": "23 july, 2023",
+          "found": "gina encouraged him with motivational words from shia labeouf",
+          "score": 0.6612891232117762,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Gina go to a dance class with a group of friends?",
+          "expected": "21 july 2023",
+          "found": "will show gina a dance routine",
+          "score": 0.6905318494364066,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What is Gina's favorite style of dance?",
+          "expected": "contemporary",
+          "found": "will show gina a dance routine",
+          "score": 0.6866949356307591,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is Jon's favorite style of dance?",
+          "expected": "contemporary",
+          "found": "jon has a dance studio",
+          "score": 0.7222838184188585,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What was Gina's favorite dancing memory?",
+          "expected": "winning first place at a regionals dance competition",
+          "found": "will show gina a dance routine",
+          "score": 0.6723777929682875,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of dance piece did Gina's team perform to win first place?",
+          "expected": "\"finding freedom\"",
+          "found": "won first place with a contemporary piece in a dance competition",
+          "score": 0.614606113439634,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What do the dancers in the photo represent?",
+          "expected": "they are performing at the festival",
+          "found": "gina emphasized the importance of creating a space for dancers",
+          "score": 0.5076982162175439,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Gina say about the dancers in the photo?",
+          "expected": "they look graceful",
+          "found": "gina emphasized the importance of creating a space for dancers",
+          "score": 0.6437936385607053,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is Jon's attitude towards being part of the dance festival?",
+          "expected": "glad",
+          "found": "jon found solace in dancing",
+          "score": 0.682132108650492,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of flooring is Jon looking for in his dance studio?",
+          "expected": "marley flooring",
+          "found": "jon has a dance studio",
+          "score": 0.7230760393762834,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Gina find for her clothing store on 1 February, 2023?",
+          "expected": "the perfect spot for her store",
+          "found": "gina shared about a new fashion piece for her store",
+          "score": 0.7710444722496219,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Gina design for her store?",
+          "expected": "the space, furniture, and decor",
+          "found": "gina shared about a new fashion piece for her store",
+          "score": 0.8003127681009505,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Gina want her customers to feel in her store?",
+          "expected": "cozy and comfortable",
+          "found": "gina aimed to create a cozy and inviting space for her customers",
+          "score": 0.746837961966951,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Jon say about Gina's progress with her store?",
+          "expected": "hard work's paying off",
+          "found": "jon discussed business endeavors with gina",
+          "score": 0.7681889593637587,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What made Gina choose the furniture and decor for her store?",
+          "expected": "personal style and customer comfort",
+          "found": "gina aimed to create a cozy and inviting space for her customers",
+          "score": 0.7353708646524109,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Jon say about creating a special experience for customers?",
+          "expected": "it's the key to making them feel welcome and coming back",
+          "found": "importance of creating a special experience for customers was emphasized",
+          "score": 0.7207332239545223,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Gina say about creating an experience for her customers?",
+          "expected": "making them want to come back",
+          "found": "gina aimed to create a cozy and inviting space for her customers",
+          "score": 0.6879867384362108,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How is Gina's store doing?",
+          "expected": "the store is doing great.",
+          "found": "gina has a store",
+          "score": 0.727197113518333,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Gina's tattoo symbolize?",
+          "expected": "freedom and expressing herself through dance",
+          "found": "gina has a collection of hoodies",
+          "score": 0.5485159682989996,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Jon and Gina compare their entrepreneurial journeys to?",
+          "expected": "dancing together and supporting each other",
+          "found": "jon discussed business endeavors with gina",
+          "score": 0.7528780977351422,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What advice does Gina give to Jon about running a successful business?",
+          "expected": "build relationships with customers, create a strong brand image, stay positive",
+          "found": "gina supports jon's business idea",
+          "score": 0.7638241922790237,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did Jon shut down his bank account?",
+          "expected": "for his business",
+          "found": "jon informed gina at 1:26 pm on 3 april, 2023, that he had closed his bank accou",
+          "score": 0.6488814661015884,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "Why did Gina combine her clothing business with dance?",
+          "expected": "she is passionate about dance and fashion",
+          "found": "gina shared her fashion success",
+          "score": 0.6800516923800151,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Jon's dance make him?",
+          "expected": "happy",
+          "found": "jon found solace in dancing",
+          "score": 0.7882359605760386,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Gina receive from a dance contest?",
+          "expected": "a trophy",
+          "found": "will show gina a dance routine",
+          "score": 0.6504759735707122,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does Gina stay confident in her business?",
+          "expected": "by reminding herself of her successes and progress, having a support system, and",
+          "found": "gina is excited about the risks and rewards of her business",
+          "score": 0.7286696054321923,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of professional experience did Gina get accepted for on May 23, 2023?",
+          "expected": "fashion internship",
+          "found": "gina got a fashion internship with an international company",
+          "score": 0.6598838158179596,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "Where is Gina's fashion internship?",
+          "expected": "fashion department of an international company",
+          "found": "gina got a fashion internship with an international company",
+          "score": 0.7822024932418474,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What book is Jon currently reading?",
+          "expected": "the lean startup",
+          "found": "jon is determined to progress",
+          "score": 0.5371473602840318,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is Jon offering to the dancers at his dance studio?",
+          "expected": "one-on-one mentoring and training",
+          "found": "jon has a dance studio",
+          "score": 0.7667759710022841,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does Jon use the clipboard with a notepad attached to it?",
+          "expected": "to set goals, track achievements, and find areas for improvement",
+          "found": "jon is expanding his social media presence",
+          "score": 0.3326845333329417,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Jon tell Gina he won't do?",
+          "expected": "quit",
+          "found": "gina praises jon's determination",
+          "score": 0.7426681232491192,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Jon take a trip to Rome for?",
+          "expected": "to clear his mind",
+          "found": "jon started going to the gym to balance his ventures",
+          "score": 0.5236635864840093,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is Jon working on opening?",
+          "expected": "a dance studio",
+          "found": "jon is expanding his social media presence",
+          "score": 0.5776929576550422,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does Gina describe the studio that Jon has opened?",
+          "expected": "amazing",
+          "found": "gina commended jon for his venture into opening a dance studio",
+          "score": 0.7185300775025942,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does Jon feel about the opening night of his dance studio?",
+          "expected": "excited",
+          "found": "jon has a dance studio",
+          "score": 0.7914146933285628,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does Gina describe the feeling that dance brings?",
+          "expected": "magical",
+          "found": "is motivated by dance",
+          "score": 0.6679880017076549,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Jon plan to do at the grand opening of his dance studio?",
+          "expected": "savor all the good vibes",
+          "found": "jon has a dance studio",
+          "score": 0.7856772770484934,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Gina say to Jon about the grand opening?",
+          "expected": "let's live it up and make some great memories",
+          "found": "gina praises jon's determination",
+          "score": 0.6900080542422194,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is the general sentiment about the upcoming grand opening?",
+          "expected": "excitement",
+          "found": "excitement for the festival performance",
+          "score": 0.4987957250825335,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What did Gina make a limited edition line of?",
+          "expected": "hoodies",
+          "found": "gina is creating a limited edition line",
+          "score": 0.8549339229790409,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "According to Gina, what makes Jon a perfect mentor and guide?",
+          "expected": "his positivity and determination",
+          "found": "gina has faith in jon's abilities",
+          "score": 0.7937010280283815,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What temporary job did Jon take to cover expenses?",
+          "expected": "",
+          "found": "jon's business has rewards",
+          "score": 0.6089639497026653,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What plans does Jon have after receiving advice at the networking event?",
+          "expected": "sprucing up his business plan, tweaking his pitch to investors, and working on a",
+          "found": "jon attends networking events",
+          "score": 0.6902472978471659,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What offer does Gina make to Jon regarding social media?",
+          "expected": "helping with making content and managing his social media accounts.",
+          "found": "jon discussed business endeavors with gina",
+          "score": 0.677139045380919,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is Jon's favorite style of painting?",
+          "expected": "",
+          "found": "jon has a dance studio",
+          "score": 0.5095154444832133,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What was Jon's favorite dancing memory?",
+          "expected": "",
+          "found": "jon found solace in dancing",
+          "score": 0.7261728445335012,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What kind of dance piece did Jon's team perform to win first place?",
+          "expected": "",
+          "found": "jon found solace in dancing",
+          "score": 0.6199916687764645,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What is Gina's attitude towards participating in the dance festival?",
+          "expected": "",
+          "found": "gina emphasized the importance of creating a space for dancers",
+          "score": 0.6609295662963979,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What kind of flooring is Gina looking for in her dance studio?",
+          "expected": "",
+          "found": "gina emphasized the importance of creating a space for dancers",
+          "score": 0.5810204883969661,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Jon find for his clothing store on 1 February, 2023?",
+          "expected": "",
+          "found": "jon's business has rewards",
+          "score": 0.5755315201447075,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Jon design for his store?",
+          "expected": "",
+          "found": "jon displayed his studio at a fair",
+          "score": 0.6109430349792858,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Jon want his customers to feel in her store?",
+          "expected": "",
+          "found": "jon's business has rewards",
+          "score": 0.5880842251580036,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What made Jon choose the furniture and decor for his store?",
+          "expected": "",
+          "found": "jon displayed his studio at a fair",
+          "score": 0.5819687723864488,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How is Jon's store doing?",
+          "expected": "",
+          "found": "jon's business has rewards",
+          "score": 0.5230273066799921,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What does Jon's tattoo symbolize?",
+          "expected": "",
+          "found": "the necklace represents love, faith, and strength",
+          "score": 0.5394788428787325,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did Gina shut down her bank account?",
+          "expected": "",
+          "found": "jon informed gina at 1:26 pm on 3 april, 2023, that he had closed his bank accou",
+          "score": 0.6441634654333356,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did Jon combine his clothing business with dance?",
+          "expected": "",
+          "found": "jon has a dance studio",
+          "score": 0.722594795165374,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Gina receive from a dance contest?",
+          "expected": "",
+          "found": "will show gina a dance routine",
+          "score": 0.6504759735707122,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What kind of professional experience did Jon get accepted for on May 23, 2023?",
+          "expected": "",
+          "found": "jon attends networking events",
+          "score": 0.5719349913357938,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Where is Gina's HR internship?",
+          "expected": "",
+          "found": "gina got a fashion internship with an international company",
+          "score": 0.6970774296494505,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Where is Jon's fashion internship?",
+          "expected": "",
+          "found": "jon has a dance studio",
+          "score": 0.5747463948202884,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What book is Gina currently reading?",
+          "expected": "",
+          "found": "gina shared about a new fashion piece for her store",
+          "score": 0.5445037599492735,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How does Gina use the clipboard with a notepad attached to it?",
+          "expected": "",
+          "found": "gina is working with influencers",
+          "score": 0.31853757212817146,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Jon take a trip to Barcelona for?",
+          "expected": "",
+          "found": "jon's goal is to overcome obstacles and achieve his dreams",
+          "score": 0.5323649356474369,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Jon make a limited edition line of?",
+          "expected": "",
+          "found": "gina is creating a limited edition line",
+          "score": 0.5229726281484437,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What temporary job did Gina take to cover expenses?",
+          "expected": "",
+          "found": "gina got a fashion internship with an international company",
+          "score": 0.6621558033711148,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What plans does Gina have after receiving advice at the networking event?",
+          "expected": "",
+          "found": "gina advised focusing on the big goal",
+          "score": 0.6818775603189031,
+          "category": 5,
+          "correct": true
+        }
+      ]
+    },
+    "3": {
+      "accuracy": 0.2538860103626943,
+      "num_qa": 193,
+      "num_sessions": 64,
+      "sessions_added": 32,
+      "details": [
+        {
+          "question": "Who did Maria have dinner with on May 3, 2023?",
+          "expected": "her mother",
+          "found": "had a conversation with maria at 7:34 pm on 18 april, 2023",
+          "score": 0.7714532886050169,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Maria donate her car?",
+          "expected": "21 december 2022",
+          "found": "maria received a medal for volunteering",
+          "score": 0.5697190802562038,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What martial arts has John done?",
+          "expected": "kickboxing, taekwondo",
+          "found": "taekwondo is a planned activity",
+          "score": 0.4835479199303059,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What type of volunteering have John and Maria both done?",
+          "expected": "volunteering at a homeless shelter",
+          "found": "john and maria pledged to continue making a difference in their community",
+          "score": 0.7314123672933529,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John join the online support group?",
+          "expected": "the week before 1 january 2023",
+          "found": "john involved family and friends in supporting the military through a virtual gr",
+          "score": 0.6753170044271632,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Maria go to the beach?",
+          "expected": "december 2022",
+          "found": "maria and john cherish beach memories",
+          "score": 0.6492661345441542,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Where has Maria made friends?",
+          "expected": "homeless shelter, gym, church",
+          "found": "caught up with maria after a few days",
+          "score": 0.6447035143787352,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What items des John mention having as a child?",
+          "expected": "a doll, a film camera",
+          "found": "john had a family road trip",
+          "score": 0.4869999583007878,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What might John's financial status be?",
+          "expected": "middle-class or wealthy",
+          "found": "john raised funds for victims of domestic abuse with a local organization",
+          "score": 0.5418906666426792,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "Who gave Maria's family money when she was younger and her family was going through tough times?",
+          "expected": "her aunt",
+          "found": "maria has a family trip to oregon in her past",
+          "score": 0.5792342116598356,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Maria meet Jean?",
+          "expected": "february 24, 2023",
+          "found": "met maria and john on 17 december, 2022 at 11:01 am",
+          "score": 0.6054582399679955,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What people has Maria met and helped while volunteering?",
+          "expected": "david, jean, cindy, laura",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.7697600073936038,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What test has John taken multiple times?",
+          "expected": "the military aptitude test",
+          "found": "john attended a community event",
+          "score": 0.4660708369117257,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Maria's grandmother pass away?",
+          "expected": "the week before 6 march 2023",
+          "found": "maria has a family trip to oregon in her past",
+          "score": 0.5984540436557979,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Would John be considered a patriotic person?",
+          "expected": "yes",
+          "found": "john involved family and friends in supporting the military through a virtual gr",
+          "score": 0.5061856390208974,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What writing classes has Maria taken?",
+          "expected": "poetry, creative writing",
+          "found": "john encouraged maria to try new classes",
+          "score": 0.5354008314355594,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John get his degree?",
+          "expected": "the week before 2 april 2023",
+          "found": "john talked about his new job",
+          "score": 0.539261979730506,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What might John's degree be in?",
+          "expected": "political science, public administration, public affairs",
+          "found": "john talked about his new job",
+          "score": 0.49750781054621346,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "Who did John go to yoga with?",
+          "expected": "rob",
+          "found": "john attends a chill yoga studio",
+          "score": 0.7251137928183868,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What damages have happened to John's car?",
+          "expected": "broken windshield, car broke down",
+          "found": "involved in an unfortunate car accident",
+          "score": 0.5325530576287449,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John take a road trip to the Pacific Northwest?",
+          "expected": "2022",
+          "found": "john had a family road trip",
+          "score": 0.631908642543263,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What areas of the U.S. has John been to or is planning to go to?",
+          "expected": "pacific northwest, east coast",
+          "found": "john visited a veteran's hospital",
+          "score": 0.4781279057075499,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John go to a convention with colleagues?",
+          "expected": "march 2023",
+          "found": "john attended a community event",
+          "score": 0.745675870320752,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What desserts has Maria made?",
+          "expected": "banana split sundae, peach cobbler",
+          "found": "maria is going to bake cakes",
+          "score": 0.6291345880781192,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John start boot camp with his family?",
+          "expected": "april.2023",
+          "found": "started going to boot camps with family",
+          "score": 0.654602444610044,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What European countries has Maria been to?",
+          "expected": "spain, england",
+          "found": "maria took a transformative solo trip to spain",
+          "score": 0.608404153640298,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What has Maria done to feel closer to her faith?",
+          "expected": "join a local church, buy a cross necklace",
+          "found": "encouraged maria to continue her positive efforts",
+          "score": 0.6461305753256499,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John have a party with veterans?",
+          "expected": "the friday before 20 may 2023",
+          "found": "john visited a veteran's hospital",
+          "score": 0.7245270532999148,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What causes does John feel passionate about supporting?",
+          "expected": "veterans, schools, infrastructure",
+          "found": "supported john's efforts to make a positive change",
+          "score": 0.6926184334294733,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What events is Maria planning for the homeless shelter funraiser?",
+          "expected": "chili cook-off, ring-toss tournament",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.6993922528972073,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What shelters does Maria volunteer at?",
+          "expected": "the homeless shelter, the dog shelter",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.8304275358909958,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John get his dog Max?",
+          "expected": "in 2013",
+          "found": "has pets",
+          "score": 0.5180936984119391,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What outdoor activities has John done with his colleagues?",
+          "expected": "hiking, mountaineering",
+          "found": "john attended a community event",
+          "score": 0.6563408569542393,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What types of yoga has Maria practiced?",
+          "expected": "aerial, kundalini",
+          "found": "maria aims to get stronger and improve her endurance with kundalini yoga",
+          "score": 0.6750364637245545,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Maria join a gym?",
+          "expected": "the week before 16 june 2023",
+          "found": "john and maria discussed trying new workout classes",
+          "score": 0.582799679912218,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What states has Maria vacationed at?",
+          "expected": "oregon, florida",
+          "found": "maria has a family trip to oregon in her past",
+          "score": 0.6642362539145303,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What music events has John attended?",
+          "expected": "live music event, violin concert",
+          "found": "john attended a community event",
+          "score": 0.6546566220126826,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What events for veterans has John participated in?",
+          "expected": "petition, march, party, visiting veterans hospital, 5k charity run",
+          "found": "john organized a charity run to help veterans",
+          "score": 0.7524361319714585,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Maria get in a car accident?",
+          "expected": "july 2, 2023",
+          "found": "involved in an unfortunate car accident",
+          "score": 0.6088684693007375,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Around which US holiday did Maria get into a car accident?",
+          "expected": "independence day",
+          "found": "caught up with maria at 3:18 pm on may 4, 2023",
+          "score": 0.5574151738364641,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What are the names of John's children?",
+          "expected": "kyle, sara",
+          "found": "john had a family road trip",
+          "score": 0.5868953443721281,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "Does John live close to a beach or the mountains?",
+          "expected": "beach",
+          "found": "john had a family road trip",
+          "score": 0.500531488099532,
+          "category": 3,
+          "correct": true
+        },
+        {
+          "question": "What area was hit by a flood?",
+          "expected": "west county",
+          "found": "the flood occurred on 7 july, 2023, at 6:29 pm",
+          "score": 0.5737176645248843,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When was John's old area hit with a flood?",
+          "expected": "the week before 7 july 2023",
+          "found": "john informed maria about a recent flood in his area",
+          "score": 0.669256165955237,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What activities has Maria done with her church friends?",
+          "expected": "hiking, picnic, volunteer work",
+          "found": "maria shared her hiking experience with church friends",
+          "score": 0.677694418407557,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "Would John be open to moving to another country?",
+          "expected": "no, he has goals specifically in the u.s. like joining the military and running ",
+          "found": "john talked about his new job",
+          "score": 0.45600996065352317,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "When did Maria go hiking with her church friends?",
+          "expected": "the weekend before 22 july 2023",
+          "found": "maria shared her hiking experience with church friends",
+          "score": 0.7859416077611256,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What exercises has John done?",
+          "expected": "weight training, circuit training, kickboxing, yoga",
+          "found": "john and maria discussed trying new workout classes",
+          "score": 0.5436529652923278,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John have his first firefighter call-out?",
+          "expected": "the sunday before 3` july 2023",
+          "found": "john joined a fire-fighting brigade to give back to the community",
+          "score": 0.6763765242351507,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What food item did Maria drop off at the homeless shelter?",
+          "expected": "cakes",
+          "found": "had dropped off baked goods at a homeless shelter",
+          "score": 0.6524143512480807,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "What attributes describe John?",
+          "expected": "selfless, family-oriented, passionate, rational",
+          "found": "john admired maria's impact",
+          "score": 0.4564858491099297,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "When did Maria start volunteering at the homeless shelter?",
+          "expected": "around august 2022",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.8263327147240165,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "Who have written notes of gratitude to Maria?",
+          "expected": "cindy, laura",
+          "found": "maria emphasizes the power of kindness",
+          "score": 0.6452187917090855,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did John help renovate his hometown community center?",
+          "expected": "2022",
+          "found": "john attended a community event",
+          "score": 0.6783863242135855,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Maria take up community work with her church friends?",
+          "expected": "august 4, 2023",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.716021765695932,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did Maria receive a medal from the homeless shelter?",
+          "expected": "the week before 9 august 2023",
+          "found": "maria received a medal for volunteering",
+          "score": 0.8246667664446665,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did John participate in a 5K charity run?",
+          "expected": "first weekend of august 2023",
+          "found": "john organized a charity run to help veterans",
+          "score": 0.7606482525513398,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What causes has John done events for?",
+          "expected": "toy drive, community food drive, veterans, domestic violence",
+          "found": "john attended a community event",
+          "score": 0.6984556540050024,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Maria get Coco?",
+          "expected": "two weeks before 11 august 2023",
+          "found": "caught up with maria after a few days",
+          "score": 0.5147839077500995,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "When did John go on a camping trip with Max?",
+          "expected": "the summer of 2022",
+          "found": "john had a family road trip",
+          "score": 0.6458276542309824,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What are Maria's dogs' names?",
+          "expected": "coco, shadow",
+          "found": "has pets",
+          "score": 0.5256106149800625,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "When did Maria adopt Shadow?",
+          "expected": "the week before 13 august 2023",
+          "found": "shadow's progress",
+          "score": 0.5197805661700081,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "How many dogs has Maria adopted from the dog shelter she volunteers at?",
+          "expected": "two",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.6405734582913247,
+          "category": 1,
+          "correct": false
+        },
+        {
+          "question": "How many weeks passed between Maria adopting Coco and Shadow?",
+          "expected": "two weeks",
+          "found": "caught up with maria after a few days",
+          "score": 0.4916288141187008,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "What job might Maria pursue in the future?",
+          "expected": "shelter coordinator, counselor",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.6142476824203528,
+          "category": 3,
+          "correct": false
+        },
+        {
+          "question": "What is John's main focus in local politics?",
+          "expected": "improving education and infrastructure",
+          "found": "supported john's efforts to make a positive change",
+          "score": 0.6500947954442176,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What sparked John's interest in improving education and infrastructure in the community?",
+          "expected": "seeing how lack of education and crumbling infrastructure affected his neighborh",
+          "found": "john wants to improve infrastructure in the community",
+          "score": 0.771379265605231,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did the extra funding help the school shown in the photo shared by John?",
+          "expected": "enabled needed repairs and renovations, making the learning environment safer an",
+          "found": "need for more funding and resources for schools",
+          "score": 0.5804772369890436,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What type of workout class did Maria start doing in December 2023?",
+          "expected": "aerial yoga",
+          "found": "john and maria discussed trying new workout classes",
+          "score": 0.690437226113168,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Maria donate to a homeless shelter in December 2023?",
+          "expected": "old car",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.6959466320596022,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of meal did John and his family make together in the photo shared by John?",
+          "expected": "pizza",
+          "found": "john had a family road trip",
+          "score": 0.5489523256814239,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of online group did John join?",
+          "expected": "service-focused online group",
+          "found": "john involved family and friends in supporting the military through a virtual gr",
+          "score": 0.6498333828402307,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of activities did John and his mates from the online group do as part of their service eff",
+          "expected": "gave out food and supplies at a homeless shelter, organized a toy drive for kids",
+          "found": "john involved family and friends in supporting the military through a virtual gr",
+          "score": 0.7445942356171997,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Who inspired Maria to start volunteering?",
+          "expected": "her aunt",
+          "found": "maria received a medal for volunteering",
+          "score": 0.7432741723203657,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did Maria sit with the little girl at the shelter event in February 2023?",
+          "expected": "the girl seemed sad and had no other family",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.6525085821765757,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Jean go through before meeting Maria?",
+          "expected": "divorce, job loss, homelessness",
+          "found": "caught up with maria after a few days",
+          "score": 0.540439330044987,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did John decide to run for office again?",
+          "expected": "saw the impact he could make in the community through politics",
+          "found": "john is running for office again",
+          "score": 0.8015031865323243,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What activity did John's colleague, Rob, invite him to?",
+          "expected": "beginner's yoga class",
+          "found": "john attended a community event",
+          "score": 0.7020285507133349,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is the name of John's one-year-old child?",
+          "expected": "kyle",
+          "found": "has a one-year-old son named kyle",
+          "score": 0.5566965428362364,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "How often does John take his kids to the park?",
+          "expected": "a few times a week",
+          "found": "john had a family road trip",
+          "score": 0.5730593669270225,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Maria make for her home to remind her of a trip to England?",
+          "expected": "painting of a castle on a hill",
+          "found": "maria took a transformative solo trip to spain",
+          "score": 0.5700828747865635,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Where did Maria get the idea for the castle shadow box in her home?",
+          "expected": "england",
+          "found": "maria emphasizes the power of kindness",
+          "score": 0.4166470699560658,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did John receive a certificate for?",
+          "expected": "completion of a university degree",
+          "found": "john attended a community event",
+          "score": 0.6325316743504492,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What areas is John particularly interested in for policymaking?",
+          "expected": "education and infrastructure",
+          "found": "supported john's efforts to make a positive change",
+          "score": 0.5850959510538218,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Maria participate in last weekend before April 10, 2023?",
+          "expected": "a 5k charity run",
+          "found": "caught up with maria at 3:18 pm on may 4, 2023",
+          "score": 0.7451883370145114,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What event did John volunteer at last weekend?",
+          "expected": "career fair at a local school",
+          "found": "john attended a community event",
+          "score": 0.7805448881239971,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did John do that put a strain on his wallet?",
+          "expected": "his car broke down",
+          "found": "john attended a community event",
+          "score": 0.5441045577427883,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Where did John explore on a road trip last year?",
+          "expected": "pacific northwest",
+          "found": "john had a family road trip",
+          "score": 0.7533293384723877,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What topic has John been blogging about recently?",
+          "expected": "politics and the government",
+          "found": "john talked about his new job",
+          "score": 0.5981908387898781,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did John start blogging about politics and policies?",
+          "expected": "raise awareness and start conversations to create positive change",
+          "found": "passion for blogging about politics and government",
+          "score": 0.5793598904627931,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What was the focus of John's recent research and writing on his blog?",
+          "expected": "education reform and infrastructure development",
+          "found": "john talked about his new job",
+          "score": 0.5871511354900107,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did John attend with his colleagues in March 2023?",
+          "expected": "a tech-for-good convention",
+          "found": "john spoke at 7:20 pm on 16 june, 2023",
+          "score": 0.7916337784913249,
+          "category": 2,
+          "correct": false
+        },
+        {
+          "question": "How often does John work out with his family?",
+          "expected": "three times a week",
+          "found": "work out with family three times a week",
+          "score": 0.5173218762351526,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "How has John's fitness improved since starting boot camps with his family?",
+          "expected": "more energy, gains in strength and endurance",
+          "found": "started going to boot camps with family",
+          "score": 0.5419744426324409,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of food did Maria have on her dinner spread iwth her mother?",
+          "expected": "salads, sandwiches, homemade desserts",
+          "found": "maria is going to bake cakes",
+          "score": 0.5275521283922462,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What activity did Maria and her mom do together in May 2023?",
+          "expected": "made dinner together",
+          "found": "caught up with maria at 3:18 pm on may 4, 2023",
+          "score": 0.7169482922648892,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Maria do to feel closer to a community and her faith?",
+          "expected": "joined a nearby church",
+          "found": "maria took a transformative solo trip to spain",
+          "score": 0.6649963526618902,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did Maria join a nearby church recently?",
+          "expected": "to feel closer to a community and her faith",
+          "found": "maria shared her hiking experience with church friends",
+          "score": 0.6329893098049737,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did John host for the veterans in May 2023 as part of the project?",
+          "expected": "a small party to share their stories",
+          "found": "john organized a charity run to help veterans",
+          "score": 0.7132769410967188,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did John and the veterans do during the small party?",
+          "expected": "share stories and make connections",
+          "found": "organized a party for veterans",
+          "score": 0.7149941798414431,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What emotions did John feel during the small party with the veterans?",
+          "expected": "heartwarming",
+          "found": "john visited a veteran's hospital",
+          "score": 0.6613764117294405,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What event is Maria getting ready for at the shelter on May 25, 2023?",
+          "expected": "fundraiser",
+          "found": "caught up with maria at 3:18 pm on may 4, 2023",
+          "score": 0.6925131996891791,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Maria need to spread the word about for the fundraiser for the volunteer shelter?",
+          "expected": "chili cook-off",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.7609195307556984,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What was the name of the pet that John had to say goodbye to on 3 June, 2023?",
+          "expected": "max",
+          "found": "caught up with john at 12:10 am on 11 august 2023",
+          "score": 0.6088552575191748,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How long was Max a part of John's family?",
+          "expected": "10 years",
+          "found": "john had a family road trip",
+          "score": 0.5177402574148809,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does John plan to honor the memories of his beloved pet?",
+          "expected": "by considering adopting a rescue dog",
+          "found": "john and maria shared experiences about military memorials",
+          "score": 0.5292159924343051,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What important values does John want to teach his kids through adopting a rescue dog?",
+          "expected": "responsibility and compassion",
+          "found": "comfort and happiness pets bring",
+          "score": 0.5348297929626629,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What new activity did Maria start recently, as mentioned on 3 June, 2023?",
+          "expected": "volunteering at a local dog shelter once a month",
+          "found": "caught up with maria at 3:18 pm on may 4, 2023",
+          "score": 0.7080780156197009,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Maria say it was like being at the waterfall in Oregon?",
+          "expected": "like being in a fairy tale",
+          "found": "maria has a family trip to oregon in her past",
+          "score": 0.7075420243087723,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does Maria say she feels when doing upside-down yoga poses?",
+          "expected": "free and light",
+          "found": "maria aims to get stronger and improve her endurance with kundalini yoga",
+          "score": 0.5506167950117513,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What exciting news did Maria share on 16 June, 2023?",
+          "expected": "joined a gym",
+          "found": "maria spoke at 7:20 pm on 16 june, 2023",
+          "score": 0.8005669755653706,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What yoga activity has Maria been trying to improve her strength and endurance?",
+          "expected": "kundalini yoga",
+          "found": "maria aims to get stronger and improve her endurance with kundalini yoga",
+          "score": 0.7787767328207998,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What did John recently get promoted to?",
+          "expected": "assistant manager",
+          "found": "john was promoted to assistant manager",
+          "score": 0.7515753521188642,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What was one of the biggest challenges John faced in his journey to becoming assistant manager?",
+          "expected": "self-doubt",
+          "found": "john was promoted to assistant manager",
+          "score": 0.6938177300747794,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does John describe the support he received during his journey to becoming assistant manager?",
+          "expected": "having support at home and his own grit",
+          "found": "john was promoted to assistant manager",
+          "score": 0.6921469867418591,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of event did John and his family attend in June 2023?",
+          "expected": "live music event",
+          "found": "john attended a community event",
+          "score": 0.7332845847393512,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did Maria need to help her cousin find a new place to live?",
+          "expected": "her cousin had to leave and find a new place in a hurry.",
+          "found": "helped her cousin find a new place",
+          "score": 0.6874812397009773,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What event did John participate in to show support for veterans' rights?",
+          "expected": "marching event",
+          "found": "participated in a veterans' rights event",
+          "score": 0.7895934078024343,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What inspired John to join the marching event for veterans' rights?",
+          "expected": "respect for the military and the desire to show support",
+          "found": "john organized a charity run to help veterans",
+          "score": 0.7015801969818258,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How often does John get to see sunsets like the one he shared with Maria?",
+          "expected": "at least once a week",
+          "found": "met maria and john on 17 december, 2022 at 11:01 am",
+          "score": 0.5463620834595254,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What natural disaster affected John's old area on 7 July, 2023?",
+          "expected": "flood",
+          "found": "the flood occurred on 7 july, 2023, at 6:29 pm",
+          "score": 0.599466204840947,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "How did the flood impact the homes in John's old area?",
+          "expected": "lots of homes were ruined.",
+          "found": "john informed maria about a recent flood in his area",
+          "score": 0.6067296977832741,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What motivated Maria and John to discuss potential solutions for their community on 7 July, 2023?",
+          "expected": "flood in john's old area",
+          "found": "john and maria discussed their recent experiences at 3:34 pm on 17 july, 2023",
+          "score": 0.7368087986875559,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did Maria plan to do later on the evening of 7 July, 2023?",
+          "expected": "have dinner with friends from the gym",
+          "found": "maria spoke at 7:20 pm on 16 june, 2023",
+          "score": 0.7607908762279487,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What kind of activities did Maria do at the picnic with her church friends?",
+          "expected": "played games like charades and a scavenger hunt",
+          "found": "maria shared her hiking experience with church friends",
+          "score": 0.6475013870452675,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does John appreciate about the veteran's hospital visit?",
+          "expected": "the resilience of the veterans and their inspiring stories",
+          "found": "john visited a veteran's hospital",
+          "score": 0.8491208025179865,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did John take away from visiting the veteran's hospital?",
+          "expected": "appreciation for giving back",
+          "found": "john visited a veteran's hospital",
+          "score": 0.8839691466377024,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why did John feel inspired to join the military after the visit to the hospital?",
+          "expected": "seeing the resilience of the veterans",
+          "found": "john visited a veteran's hospital",
+          "score": 0.7269071054415437,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "In what activity did Maria and her church friends participate in July 2023?",
+          "expected": "hiking",
+          "found": "maria spoke at 7:20 pm on 16 june, 2023",
+          "score": 0.6845622421671532,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does John think about trying new classes at the yoga studio?",
+          "expected": "trying new classes is a fun way to switch up the exercise routine.",
+          "found": "john attends a chill yoga studio",
+          "score": 0.7683225046034508,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Which activity has John done apart from yoga at the studio?",
+          "expected": "weight training",
+          "found": "john attends a chill yoga studio",
+          "score": 0.6895606833036052,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What community service did Maria mention that she was involved in on 31 July, 2023?",
+          "expected": "volunteered at a homeless shelter",
+          "found": "maria received a medal for volunteering",
+          "score": 0.700136689773748,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did Maria start volunteering at the homeless shelter?",
+          "expected": "witnessed a family struggling on the streets and reached out to the shelter",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.8552535578670886,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did John do the week before August 3, 2023 involving his kids?",
+          "expected": "had a meaningful experience at a military memorial",
+          "found": "caught up with john at 12:10 am on 11 august 2023",
+          "score": 0.6720181274718977,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How did John describe his kids' reaction at the military memorial?",
+          "expected": "awestruck and humbled",
+          "found": "john and maria shared experiences about military memorials",
+          "score": 0.7209119294753799,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why does Maria think it's important for younger generations to visit military memorials?",
+          "expected": "to remember and appreciate those who served",
+          "found": "john and maria shared experiences about military memorials",
+          "score": 0.7305173249990411,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What does John believe is important for children regarding veterans?",
+          "expected": "teaching them to respect and appreciate those who served",
+          "found": "john and maria emphasized teaching respect for veterans to younger generations",
+          "score": 0.74702438387852,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What happened to John's job in August 2023?",
+          "expected": "john lost his job at the mechanical engineering company.",
+          "found": "john talked about his new job",
+          "score": 0.6973285256734817,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What activity did Maria take up with her friends from church in August 2023?",
+          "expected": "community work",
+          "found": "maria shared her hiking experience with church friends",
+          "score": 0.6839285613178616,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did John do to help his community last year in his hometown?",
+          "expected": "helped renovate a rundown community center.",
+          "found": "john attended a community event",
+          "score": 0.7508625891110795,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What cause did the 5K charity run organized by John support?",
+          "expected": "veterans and their families",
+          "found": "john organized a charity run to help veterans",
+          "score": 0.8053954882071284,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Who did John work with to raise awareness and funds for victims of domestic abuse?",
+          "expected": "a local organization",
+          "found": "john raised funds for victims of domestic abuse with a local organization",
+          "score": 0.8635503963800704,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What recognition did Maria receive at the homeless shelter in August 2023?",
+          "expected": "a medal for volunteering",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.7463272555865168,
+          "category": 4,
+          "correct": true
+        },
+        {
+          "question": "What is the name of Maria's puppy she got two weeks before August 11, 2023?",
+          "expected": "coco",
+          "found": "caught up with maria at 3:18 pm on may 4, 2023",
+          "score": 0.6437648325450622,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What activity did John and Max enjoy together last summer?",
+          "expected": "camping",
+          "found": "john had a family road trip",
+          "score": 0.5426570865334301,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How does John describe the camping trip with Max?",
+          "expected": "peaceful and awesome",
+          "found": "john had a family road trip",
+          "score": 0.6378860896872098,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "Why does John say he feels stuck and questioning his decisions and goals?",
+          "expected": "not feeling like making much of an impact",
+          "found": "john feels a sense of purpose and passion in his new role",
+          "score": 0.6596407489306269,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is the name of Maria's second puppy?",
+          "expected": "shadow",
+          "found": "has pets",
+          "score": 0.5065180304960095,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "How is Maria's new puppy adjusting to its new home?",
+          "expected": "doing great - learning commands and house training",
+          "found": "adopted a new pup named shadow",
+          "score": 0.5187866452284235,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is John currently doing as a volunteer in August 2023?",
+          "expected": "mentoring students at a local school",
+          "found": "caught up with john at 12:10 am on 11 august 2023",
+          "score": 0.627524634643357,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What activities does John's family enjoy doing together?",
+          "expected": "going for hikes, hanging out at the park, having picnics, playing board games, h",
+          "found": "family activities include",
+          "score": 0.7053868047563594,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What did the donations help John's community acquire on 16 August, 2023?",
+          "expected": "a brand new fire truck",
+          "found": "john attended a community event",
+          "score": 0.6435206772688308,
+          "category": 4,
+          "correct": false
+        },
+        {
+          "question": "What is John's main focus in international politics?",
+          "expected": "",
+          "found": "supported john's efforts to make a positive change",
+          "score": 0.5944534143145114,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Maria donate to a luxury store in December 2023?",
+          "expected": "",
+          "found": "gina shared about a new fashion piece for her store",
+          "score": 0.5493342892905347,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Who inspired John to start volunteering?",
+          "expected": "",
+          "found": "john organized a charity run to help veterans",
+          "score": 0.7145806542194189,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did Maria decide to run for office again?",
+          "expected": "",
+          "found": "encouraged maria to continue her positive efforts",
+          "score": 0.5273830372118699,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What activity did Maria's colleague, Rob, invite her to?",
+          "expected": "",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.5939836189964802,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What is the name of Maria's one-year-old child?",
+          "expected": "",
+          "found": "had a conversation with maria at 7:34 pm on 18 april, 2023",
+          "score": 0.5349576757168639,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How often does John take his kids to the library?",
+          "expected": "",
+          "found": "john had a family road trip",
+          "score": 0.5296400978974055,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Maria make for her home to remind her of a trip to France?",
+          "expected": "",
+          "found": "maria took a transformative solo trip to spain",
+          "score": 0.5758182608818292,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Where did John get the idea for the castle shadow box in his home?",
+          "expected": "",
+          "found": "jon displayed his studio at a fair",
+          "score": 0.3934532153978163,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Maria receive a certificate for?",
+          "expected": "",
+          "found": "maria received a medal for volunteering",
+          "score": 0.713386726676523,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What areas is John particularly interested in for art appreciation?",
+          "expected": "",
+          "found": "caroline recently started abstract art",
+          "score": 0.5610793012482425,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did Maria start blogging about politics and policies?",
+          "expected": "",
+          "found": "passion for blogging about politics and government",
+          "score": 0.555701527977807,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What was the focus of John's recent travel and photography blog?",
+          "expected": "",
+          "found": "john attended a community event",
+          "score": 0.5531184811333454,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How often does Maria work out with her family?",
+          "expected": "",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.5053960213607614,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How has John's artistic skills improved since starting boot camps with his family?",
+          "expected": "",
+          "found": "jon offers one-on-one mentoring at the studio",
+          "score": 0.4641877833169566,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What kind of food did Maria have on her dinner spread with her father?",
+          "expected": "",
+          "found": "maria is going to bake cakes",
+          "score": 0.5288984348239003,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did John do to feel closer to a community and his faith?",
+          "expected": "",
+          "found": "john attended a community event",
+          "score": 0.6714602779451901,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did John join a nearby church recently?",
+          "expected": "",
+          "found": "john attended a community event",
+          "score": 0.6423221521587368,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How long was Max a part of Maria's family?",
+          "expected": "",
+          "found": "maria has a family trip to oregon in her past",
+          "score": 0.5533969887534835,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How does Maria plan to honor the memories of her beloved pet?",
+          "expected": "",
+          "found": "maria emphasizes the power of kindness",
+          "score": 0.5726239220871182,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What important values does Maria want to teach her kids through adopting a rescue dog?",
+          "expected": "",
+          "found": "maria has volunteer experience at a shelter",
+          "score": 0.5859140372439234,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Maria say it was like being at the desert in Oregon?",
+          "expected": "",
+          "found": "maria has a family trip to oregon in her past",
+          "score": 0.7080339224967084,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What does John say she feels when doing upside-down yoga poses?",
+          "expected": "",
+          "found": "john attends a chill yoga studio",
+          "score": 0.5105991779783758,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did Maria recently get promoted to?",
+          "expected": "",
+          "found": "maria received a medal for volunteering",
+          "score": 0.6192776732300083,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What was one of the biggest challenges Maria faced in her journey to becoming assistant manager?",
+          "expected": "",
+          "found": "encouraged maria to continue her positive efforts",
+          "score": 0.6111611492785962,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did John need to help his cousin find a new place to live?",
+          "expected": "",
+          "found": "john had a family road trip",
+          "score": 0.6259414965383017,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What event did Maria participate in to show support for veterans' rights?",
+          "expected": "",
+          "found": "participated in a veterans' rights event",
+          "score": 0.7657642203027101,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How did the drought impact the homes in John's old area?",
+          "expected": "",
+          "found": "john informed maria about a recent flood in his area",
+          "score": 0.49455666452716035,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What does John criticize about the veteran's hospital visit?",
+          "expected": "",
+          "found": "john visited a veteran's hospital",
+          "score": 0.8271794960829892,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What did John take away from visiting the orphanage?",
+          "expected": "",
+          "found": "john had a family road trip",
+          "score": 0.5871209644596499,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why did Maria feel inspired to join the military after the visit to the hospital?",
+          "expected": "",
+          "found": "maria supports military veterans",
+          "score": 0.6529368361870609,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How did Maria describe her kids' reaction at the military memorial?",
+          "expected": "",
+          "found": "john and maria shared experiences about military memorials",
+          "score": 0.7138862291026511,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Why does Maria think it's important for younger generations to visit art galleries?",
+          "expected": "",
+          "found": "painting helps her explore her identity",
+          "score": 0.5738220844093029,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What happened to Maria's job in August 2023?",
+          "expected": "",
+          "found": "caught up with maria at 3:18 pm on may 4, 2023",
+          "score": 0.6857700762229388,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What cause did the 5K charity run organized by Maria support?",
+          "expected": "",
+          "found": "maria received a medal for volunteering",
+          "score": 0.6650403963338338,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "Who did John work with to raise awareness and funds for animal welfare?",
+          "expected": "",
+          "found": "john raised funds for victims of domestic abuse with a local organization",
+          "score": 0.6169617361580381,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What recognition did John receive at the homeless shelter in August 2023?",
+          "expected": "",
+          "found": "john attended a community event",
+          "score": 0.6693631579328966,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What is the name of John's puppy he got two weeks before August 11, 2023?",
+          "expected": "",
+          "found": "caught up with john at 12:10 am on 11 august 2023",
+          "score": 0.5717838809089861,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How does Maria describe the camping trip with Max?",
+          "expected": "",
+          "found": "maria finds solace in nature through camping",
+          "score": 0.6630315975152135,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "What is the name of Maria's second kitten?",
+          "expected": "",
+          "found": "caught up with maria after a few days",
+          "score": 0.4800059870652265,
+          "category": 5,
+          "correct": true
+        },
+        {
+          "question": "How is John's new puppy adjusting to its new home?",
+          "expected": "",
+          "found": "adopted a new pup named shadow",
+          "score": 0.5297794274613672,
+          "category": 5,
+          "correct": true
+        }
+      ]
+    }
+  }
+}

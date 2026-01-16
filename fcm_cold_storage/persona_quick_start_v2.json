@@ -1,0 +1,26 @@
+{
+  "user_id": "quick_start_v2",
+  "communication_style": "formal",
+  "preferred_response_length": "brief",
+  "humor_level": 0.0,
+  "topics_of_interest": [
+    "nghiên cứu AI",
+    "lập trình Python",
+    "Công nghệ thông tin",
+    "Lập trình Python",
+    "AI Agent",
+    "lập trình",
+    "nghiên cứu",
+    "du lịch"
+  ],
+  "avoided_topics": [],
+  "preferred_language": "vi",
+  "use_emojis": true,
+  "interaction_count": 10,
+  "familiarity_level": 0.6,
+  "inferred_traits": [
+    "kiên nhẫn",
+    "tò mò",
+    "kỹ tính"
+  ]
+}

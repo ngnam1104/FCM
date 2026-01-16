@@ -1,0 +1,58 @@
+# ========================================
+# MEM0 LOCAL SDK REQUIREMENTS
+# ========================================
+# Python 3.9+
+# Usage: pip install -r requirements_local.txt
+
+# Core
+python-dotenv>=1.0.0
+
+# LLM & Embeddings
+openai>=1.0.0
+pydantic>=2.0.0
+
+# Utils
+tqdm>=4.60.0
+
+# Optional: Vector stores (uncomment if needed)
+# qdrant-client>=1.9.0
+# pinecone>=7.0.0
+# chromadb>=0.4.0
+# weaviate-client>=4.0.0
+
+# Optional: Graph databases (uncomment if needed)
+# neo4j>=5.0.0
+# langchain-neo4j>=0.4.0
+
+# Optional: Local LLM (uncomment if needed)
+# ollama>=0.1.0
+
+# Optional: Other LLM providers (uncomment if needed)
+# anthropic>=0.7.0
+# google-generativeai>=0.3.0
+
+# Development
+pytest>=8.0.0
+pytest-mock>=3.0.0
+black>=23.0.0
+flake8>=6.0.0
+# Requirements for Mem0 with Groq LLM (Free, No GPU)
+# Install: pip install -r requirements_groq.txt
+
+# Core
+mem0ai>=0.1.0
+groq>=0.4.1
+qdrant-client>=2.7.0
+python-dotenv>=1.0.0
+
+# Embeddings
+sentence-transformers>=2.2.2
+
+# Utilities
+pydantic>=2.0.0
+
+# Optional: For RAG features
+langchain>=0.1.0
+
+# Optional: Testing
+pytest>=7.4.0
