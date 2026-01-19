@@ -12,10 +12,41 @@ Giao diện Streamlit để demo FCM Agent với khả năng:
 Chạy: streamlit run demoUI.py
 """
 
-import streamlit as st
-import os
+
+import gc
+import logging
 import sys
+import os
+
+# Tắt warning ngay lập tức trước khi import bất kỳ thư viện nào khác
+logging.getLogger('streamlit.runtime.scriptrunner_utils.script_run_context').setLevel(logging.ERROR)
+logging.getLogger('streamlit.runtime').setLevel(logging.ERROR)
+logging.getLogger('streamlit').setLevel(logging.ERROR) # Tắt thêm logger gốc cho chắc chắn
+
+# --- 2. SAU ĐÓ MỚI IMPORT STREAMLIT VÀ CÁC LIBS KHÁC ---
+import streamlit as st
 import time
+
+# Thêm đường dẫn (giữ nguyên code cũ của bạn)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Chỉ in log kiểm tra API Key một lần duy nhất khi khởi động session
+if "api_checked" not in st.session_state:
+    print("=" * 60)
+    api_key = os.getenv("GROQ_API_KEY")
+    if api_key:
+        print(f"✅ GROQ_API_KEY found: {api_key[:20]}...")
+        # Đánh dấu là đã kiểm tra để không in lại lần sau
+        st.session_state["api_checked"] = True
+    else:
+        print("❌ GROQ_API_KEY NOT FOUND!")
+        st.error("❌ GROQ_API_KEY NOT FOUND! Vui lòng kiểm tra file .env")
+        st.stop() # Dùng st.stop() thay vì sys.exit() để dừng UI nhẹ nhàng hơn
+    print("=" * 60)
 
 # --- CẤU HÌNH TRANG ---
 st.set_page_config(
@@ -65,15 +96,29 @@ def get_agent(version: str, user_id: str):
 
 
 def reset_agent():
-    """Reset agent and clear session state"""
+    """Reset agent and clear session state SAFE for Windows"""
+    
+    # 1. Xóa reference đến Agent cũ
+    if "agent" in st.session_state and st.session_state.agent is not None:
+        # Nếu agent có hàm close, hãy gọi nó (ví dụ Qdrant client có close())
+        # Tuy nhiên mem0 wrap khá kín, nên ta dùng cách xóa object
+        del st.session_state.agent
+        
     if "agent" in st.session_state:
-        try:
-            st.session_state.agent.memory.delete_all(user_id=st.session_state.user_id)
-        except:
-            pass
-    st.session_state.agent = None
+        del st.session_state["agent"]
+        
+    # 2. Ép buộc Garbage Collection chạy để giải phóng file handle
+    gc.collect()
+    
+    # 3. Chờ một chút để Windows kịp mở khóa (Hack quan trọng trên Windows)
+    time.sleep(1.0) 
+    
+    # 4. Reset các biến khác
     st.session_state.messages = []
     st.session_state.initialized = False
+    
+    # 5. Rerun để Streamlit chạy lại từ đầu với state sạch
+    st.rerun()
 
 
 # --- SIDEBAR: BẢNG ĐIỀU KHIỂN ---
@@ -114,10 +159,16 @@ with st.sidebar:
     st.session_state.user_id = user_id
     
     if "agent" not in st.session_state or st.session_state.agent is None:
-        with st.spinner(f"Initializing FCM {version}..."):
-            st.session_state.agent = get_agent(version, user_id)
-            st.session_state.messages = []
-            st.session_state.initialized = True
+        try:
+            with st.spinner(f"Initializing FCM {version}..."):
+                st.session_state.agent = get_agent(version, user_id)
+                st.session_state.messages = []
+                st.session_state.initialized = True
+            st.success("Khởi tạo thành công!") # Báo thành công nếu qua được
+        except Exception as e:
+            st.error(f"❌ Lỗi khởi tạo Agent: {str(e)}")
+            st.code(str(e)) # In chi tiết lỗi ra màn hình
+            st.stop() # Dừng app lại an toàn
     
     # Control buttons
     st.subheader("🎮 Actions")
@@ -194,7 +245,11 @@ with col_chat:
     for message in st.session_state.get("messages", []):
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-    
+            # Nếu là tin nhắn bot và có log xử lý đi kèm (lưu trong lịch sử)
+            if "debug_info" in message:
+                with st.expander("🛠️ Chi tiết xử lý (Processing Log)"):
+                    st.json(message["debug_info"])
+
     # Input chat
     if prompt := st.chat_input("Nhập tin nhắn... (VD: Tôi tên Nam, sinh năm 2003)"):
         # 1. Hiển thị tin nhắn User
@@ -204,7 +259,7 @@ with col_chat:
         
         # 2. Agent xử lý
         with st.chat_message("assistant"):
-            with st.spinner("Đang suy nghĩ..."):
+            with st.spinner("Đang suy nghĩ & Ghi nhớ..."):
                 start_time = time.time()
                 
                 # Gọi agent chat
@@ -216,108 +271,142 @@ with col_chat:
                 
                 elapsed = time.time() - start_time
                 
-                # Tạo response dựa trên context
+                # --- PHẦN HIỂN THỊ LOG CẬP NHẬT ---
+                # Tạo một dictionary chứa thông tin cập nhật trong lượt này
+                debug_info = {
+                    "⏱️ Thời gian xử lý": f"{elapsed:.2f}s",
+                    "💧 Saved to Liquid": response_data.get("liquid_saved", False),
+                    "🔄 Topic Shift": response_data.get("topic_shifted", False),
+                    "💎 Crystallized": response_data.get("crystallized", False),
+                    "⚠️ Trigger Reason": response_data.get("crystallize_trigger", "None")
+                }
+                
+                # Hiển thị Log ngay lập tức dưới tin nhắn
+                with st.expander("🛠️ Chi tiết xử lý (Processing Log)", expanded=True):
+                    st.write(f"**Trạng thái:** {'✅ Đã lưu Liquid' if debug_info['💧 Saved to Liquid'] else '❌ Lỗi lưu'}")
+                    if debug_info['🔄 Topic Shift']:
+                        st.warning(f"⚡ Phát hiện đổi chủ đề! -> Kích hoạt Crystallize")
+                    if debug_info['💎 Crystallized']:
+                        st.success(f"💎 Đã kết tinh ký ức vào Crystal Layer!")
+                    
+                    st.caption("Raw Data:")
+                    st.json(debug_info)
+
+                # --- PHẦN HIỂN THỊ CÂU TRẢ LỜI (Đã sửa logic) ---
                 context = response_data.get("context", {})
-                combined = context.get("combined", []) if context else []
                 
+                # Xử lý lấy list kết quả an toàn (dict hoặc object)
+                combined = []
+                if isinstance(context, dict):
+                    combined = context.get("combined") or context.get("combined_results", [])
+                
+                # Logic hiển thị thông minh hơn
                 if combined:
-                    # Có context - tạo response từ memory
-                    top_memory = combined[0].get("memory", "")
-                    bot_reply = f"Dựa trên ký ức của tôi: {top_memory}"
+                    top_mem = combined[0].get("memory", "")
+                    bot_reply = f"Tôi đã ghi nhận. \n\n*Dựa trên ký ức liên quan tìm thấy:* \n> {top_mem}"
                 else:
-                    bot_reply = f"Đã ghi nhớ: '{prompt[:50]}...'" if len(prompt) > 50 else f"Đã ghi nhớ: '{prompt}'"
-                
+                    bot_reply = "Đã ghi nhận thông tin mới vào bộ nhớ ngắn hạn."
+
                 st.markdown(bot_reply)
-                
-                # Stats
-                st.caption(f"⏱️ {elapsed:.2f}s | 📊 {response_data.get('stats', {})}")
-                
-                # Topic Shift notification
-                if response_data.get("topic_shifted"):
-                    st.toast("⚡ Topic Shift detected! Crystallizing...", icon="⚡")
         
-        st.session_state.messages.append({"role": "assistant", "content": bot_reply})
+        # Lưu tin nhắn bot kèm debug_info vào lịch sử
+        st.session_state.messages.append({
+            "role": "assistant", 
+            "content": bot_reply,
+            "debug_info": debug_info # Lưu log để render lại khi rerun
+        })
+        
+        # Rerun để cập nhật thống kê bên Sidebar và Cột Brain ngay lập tức
         st.rerun()
 
 
 # === CỘT PHẢI: BỘ NÃO ===
+# === CỘT PHẢI: BỘ NÃO ===
 with col_brain:
     st.header("🧠 Memory Visualization")
     
-    tab1, tab2, tab3, tab4 = st.tabs(["📌 Solid (Profile)", "💎 Crystal", "💧 Liquid", "🔧 Debug"])
+    tab1, tab2, tab3, tab4 = st.tabs(["📌 Solid (L3)", "💎 Crystal (L2)", "💧 Liquid (L1)", "⚙️ Config"])
     
-    # TAB 1: USER PROFILE (Solid Layer)
+    agent = st.session_state.agent
+
+    # TAB 1: SOLID LAYER (Profile)
     with tab1:
-        st.info("Long-term Memory - User Profile consolidated từ các facts")
-        
-        profile = st.session_state.agent.get_user_profile()
-        
-        if not any(profile.values()):
-            st.warning("Chưa có thông tin Profile. Hãy chat thêm và nhấn Evolve.")
-        else:
-            for section, facts in profile.items():
-                if facts:
-                    with st.expander(f"📌 {section.upper()}", expanded=True):
-                        for f in facts:
-                            st.write(f"• {f}")
+        st.info("Long-term Memory: Hồ sơ người dùng (User Profile)")
+        try:
+            profile = agent.get_user_profile()
+            if not any(profile.values()):
+                st.warning("Trống. Hãy chat nhiều hơn và nhấn 'Evolve'.")
+            else:
+                for section, facts in profile.items():
+                    if facts:
+                        with st.expander(f"📌 {section.upper()}", expanded=True):
+                            for f in facts:
+                                st.write(f"• {f}")
+        except Exception as e:
+            st.error(f"Lỗi lấy Solid Layer: {e}")
     
-    # TAB 2: CRYSTAL LAYER
+    # TAB 2: CRYSTAL LAYER (Facts)
     with tab2:
-        st.info("Mid-term Memory - Atomic Facts được trích xuất từ hội thoại")
-        
-        crystals = st.session_state.agent.get_crystal_memories(limit=20)
-        if crystals:
-            for c in crystals:
-                with st.container():
-                    mem = c.get('memory', '')
-                    category = c.get('metadata', {}).get('category', 'fact')
-                    st.markdown(f"**[{category}]** {mem}")
-                    st.divider()
-        else:
-            st.warning("Chưa có Crystal facts. Hãy chat thêm và nhấn Crystallize.")
+        st.info("Mid-term Memory: Các sự kiện/facts cụ thể")
+        try:
+            # Gọi hàm riêng cho Crystal
+            if hasattr(agent, 'get_crystal_memories'):
+                crystals = agent.get_crystal_memories(limit=20)
+            else:
+                # Fallback nếu chưa update agent.py
+                crystals = agent.crystal_layer.get_memories(limit=20)
+
+            if crystals:
+                for c in crystals:
+                    with st.container():
+                        mem = c.get('memory', '')
+                        meta = c.get('metadata') or {}
+                        category = meta.get('category', 'fact')
+                        created_at = meta.get('created_at', '')
+                        
+                        st.markdown(f"**[{category}]** {mem}")
+                        st.caption(f"🕒 {created_at}")
+                        st.divider()
+            else:
+                st.write("*(Chưa có dữ liệu kết tinh)*")
+        except Exception as e:
+            st.error(f"Lỗi lấy Crystal Layer: {e}")
     
-    # TAB 3: LIQUID LAYER
+    # TAB 3: LIQUID LAYER (Raw Messages)
     with tab3:
-        st.info("Short-term Memory - Raw messages chưa xử lý")
-        
-        liquids = st.session_state.agent.get_liquid_memories(limit=20, status="all")
-        if liquids:
-            for l in liquids:
-                mem = l.get('memory', '')
-                role = l.get('metadata', {}).get('role', 'user')
-                ts = l.get('metadata', {}).get('timestamp', '')[:19]
-                
-                icon = "👤" if role == "user" else "🤖"
-                st.caption(f"{icon} {ts}")
-                st.text(mem[:200])
-                st.divider()
-        else:
-            st.warning("Chưa có Liquid messages.")
-    
-    # TAB 4: DEBUG
+        st.info("Short-term Memory: Bộ đệm hội thoại")
+        try:
+            # Gọi hàm riêng cho Liquid
+            if hasattr(agent, 'get_liquid_memories'):
+                liquids = agent.get_liquid_memories(limit=20, status="all")
+            else:
+                # Fallback
+                liquids = agent.liquid_layer.get_messages(limit=20)
+
+            if liquids:
+                for l in liquids:
+                    mem = l.get('memory', '')
+                    meta = l.get('metadata') or {}
+                    role = meta.get('role', 'user')
+                    ts = str(meta.get('timestamp', ''))[:19]
+                    
+                    # Style khác nhau cho User/Bot
+                    if role == "user":
+                        st.info(f"👤 **User** ({ts}):\n{mem}")
+                    else:
+                        st.success(f"🤖 **Agent** ({ts}):\n{mem}")
+            else:
+                st.write("*(Bộ đệm trống)*")
+        except Exception as e:
+            st.error(f"Lỗi lấy Liquid Layer: {e}")
+
+    # TAB 4: CONFIG & DEBUG
     with tab4:
-        st.info("Debug Information")
+        st.write("**Current Config:**")
+        st.json(agent.config.__dict__)
         
-        # All memories by layer
-        if st.button("📋 Show All Memories"):
-            all_mems = st.session_state.agent.get_all_memories_by_layer()
-            
-            st.write(f"**Liquid:** {len(all_mems.get('liquid', []))} items")
-            st.write(f"**Crystal:** {len(all_mems.get('crystal', []))} items")
-            st.write(f"**Solid:** {len(all_mems.get('solid', []))} items")
-            
-            with st.expander("Raw Data"):
-                st.json(all_mems)
-        
-        # Config
-        with st.expander("⚙️ Current Config"):
-            config = st.session_state.agent.config
-            st.write(f"- LLM: {config.llm_provider}/{config.llm_model}")
-            st.write(f"- Crystallize Threshold: {config.crystallize_threshold}")
-            st.write(f"- Evolve Threshold: {config.evolve_threshold}")
-            if version == "V2":
-                st.write(f"- Attention Sinks: {getattr(config, 'attention_sink_count', 'N/A')}")
-                st.write(f"- Semantic Threshold: {getattr(config, 'semantic_similarity_threshold', 'N/A')}")
+        if st.button("Refresh View"):
+            st.rerun()
 
 
 # --- FOOTER ---
@@ -326,7 +415,7 @@ st.markdown(
     f"""
     <div style='text-align: center; color: gray;'>
         FCM Demo v0.3.0 | Running <b>FCM {version}</b> | 
-        <a href='https://github.com/your-repo/fcm'>GitHub</a>
+        <a href='https://github.com/ngnam1104/FCM'>GitHub</a>
     </div>
     """,
     unsafe_allow_html=True

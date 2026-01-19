@@ -4,23 +4,24 @@
   "preferred_response_length": "brief",
   "humor_level": 0.0,
   "topics_of_interest": [
-    "nghiên cứu AI",
     "lập trình Python",
     "Công nghệ thông tin",
-    "Lập trình Python",
-    "AI Agent",
     "lập trình",
+    "Lập trình Python",
     "nghiên cứu",
+    "nghiên cứu AI Agent",
+    "nghiên cứu AI",
+    "AI Agent",
     "du lịch"
   ],
   "avoided_topics": [],
   "preferred_language": "vi",
   "use_emojis": true,
-  "interaction_count": 10,
-  "familiarity_level": 0.6,
+  "interaction_count": 11,
+  "familiarity_level": 0.65,
   "inferred_traits": [
-    "kiên nhẫn",
+    "kỹ tính",
     "tò mò",
-    "kỹ tính"
+    "kiên nhẫn"
   ]
 }

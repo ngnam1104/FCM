@@ -203,14 +203,21 @@ class FCMAgentV2:
                 result["crystallize_trigger"] = trigger_reason
         
         # 3. Retrieve context
+        # 3. Retrieve context (ĐOẠN CẦN SỬA)
         if return_context:
+            # Hàm search giờ trả về Dict
             context = self.search(user_message, strategy="weighted")
-            result["context"] = context.model_dump()
+            
+            # Gán thẳng dict vào kết quả
+            result["context"] = context
+            
+            # Lấy list kết quả an toàn từ dict
+            combined_results = context.get("combined") or context.get("combined_results", [])
             
             # Cải tiến 3: Reinforce accessed memories
-            if context.combined_results:
+            if combined_results:
                 self.retriever.reinforce_accessed_memories(
-                    context.combined_results,
+                    combined_results,
                     self.solid_layer
                 )
         
@@ -218,7 +225,6 @@ class FCMAgentV2:
         result["stats"] = self.get_stats()
         
         return result
-    
     def crystallize(self, force: bool = False, session_date: Optional[str] = None) -> Dict[str, Any]:
         """
         Run Crystallization process với Bi-Temporal extraction
@@ -325,33 +331,41 @@ class FCMAgentV2:
         strategy: str = "enhanced",
         limit: int = 10,
         temporal_context: Optional[str] = None
-    ) -> SearchResult:
+    ) -> Dict[str, Any]:
         """
-        Search với Enhanced Pipeline (Cải tiến 6)
-        
-        Pipeline: Preprocess → Wide Retrieve → Filter & Rerank → Finalize
-        
-        Args:
-            query: Câu truy vấn
-            strategy: "enhanced" (default), "weighted", "hybrid", "solid_first", "all"
-            limit: Số kết quả tối đa
-            temporal_context: Context thời gian cho Bi-Temporal boost
+        Search wrapper trả về Dictionary tương thích với demoUI.py
         """
+        # 1. Thực hiện search (giữ nguyên logic cũ)
         if strategy == "weighted":
-            # Use weighted retriever for backward compatibility
-            return self.weighted_retriever.search(
+            result_obj = self.weighted_retriever.search(
                 query=query,
                 strategy=strategy,
                 limit=limit,
                 temporal_context=temporal_context
             )
+        else:
+            result_obj = self.retriever.search(
+                query=query,
+                strategy=strategy,
+                limit=limit,
+                temporal_context=temporal_context
+            )
+            
+        # 2. Chuyển đổi Object -> Dict
+        # Kiểm tra nếu object có hàm model_dump (Pydantic V2) hoặc dict (Pydantic V1)
+        if hasattr(result_obj, "model_dump"):
+            result_dict = result_obj.model_dump()
+        elif hasattr(result_obj, "dict"):
+            result_dict = result_obj.dict()
+        else:
+            result_dict = result_obj if isinstance(result_obj, dict) else {}
+
+        # 3. FIX TƯƠNG THÍCH: Map 'combined_results' (V2) thành 'combined' (V1 demoUI)
+        # UI dùng .get('combined'), còn V2 trả về 'combined_results'
+        if "combined_results" in result_dict:
+            result_dict["combined"] = result_dict["combined_results"]
         
-        return self.retriever.search(
-            query=query,
-            strategy=strategy,
-            limit=limit,
-            temporal_context=temporal_context
-        )
+        return result_dict
     
     def end_session(self, auto_evolve: bool = True) -> Dict[str, Any]:
         """
@@ -419,6 +433,18 @@ class FCMAgentV2:
             "crystal": self.crystal_layer.get_memories(limit=50),
             "solid": self.solid_layer.get_memories(limit=50)
         }
+        
+    def get_crystal_memories(self, limit: int = 20) -> List[Dict[str, Any]]:
+        """Wrapper lấy crystal memories cho UI"""
+        return self.crystal_layer.get_memories(limit=limit)
+
+    def get_liquid_memories(self, limit: int = 20, status: str = "all") -> List[Dict[str, Any]]:
+        """Wrapper lấy liquid messages cho UI (bỏ qua tham số status của V1)"""
+        return self.liquid_layer.get_messages(limit=limit)
+
+    def get_all_memories_by_layer(self) -> Dict[str, List[Dict[str, Any]]]:
+        """Alias cho hàm get_memories_by_layer để khớp tên gọi trong UI"""
+        return self.get_memories_by_layer()
     
     def get_stats(self) -> Dict[str, Any]:
         """Lấy statistics"""
