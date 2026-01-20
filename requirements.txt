@@ -5,54 +5,54 @@
 # Usage: pip install -r requirements_local.txt
 
 # Core
-python-dotenv>=1.0.0
+python-dotenv
 
 # LLM & Embeddings
-openai>=1.0.0
-pydantic>=2.0.0
+openai
+pydantic
 
 # Utils
-tqdm>=4.60.0
+tqdm
 
 # Optional: Vector stores (uncomment if needed)
-# qdrant-client>=1.9.0
-# pinecone>=7.0.0
-# chromadb>=0.4.0
-# weaviate-client>=4.0.0
+# qdrant-client
+# pinecone
+# chromadb
+# weaviate-client
 
 # Optional: Graph databases (uncomment if needed)
-# neo4j>=5.0.0
-# langchain-neo4j>=0.4.0
+# neo4j
+# langchain-neo4j
 
 # Optional: Local LLM (uncomment if needed)
-# ollama>=0.1.0
+# ollama
 
 # Optional: Other LLM providers (uncomment if needed)
-# anthropic>=0.7.0
-# google-generativeai>=0.3.0
+# anthropic
+# google-generativeai
 
 # Development
-pytest>=8.0.0
-pytest-mock>=3.0.0
-black>=23.0.0
-flake8>=6.0.0
-# Requirements for Mem0 with Groq LLM (Free, No GPU)
+pytest
+pytest-mock
+black
+flake8
+
 # Install: pip install -r requirements_groq.txt
 
 # Core
-mem0ai>=0.1.0
-groq>=0.4.1
-qdrant-client>=2.7.0
-python-dotenv>=1.0.0
+mem0ai
+groq
+qdrant-client
+python-dotenv
 
 # Embeddings
-sentence-transformers>=2.2.2
+sentence-transformers
 
 # Utilities
-pydantic>=2.0.0
+pydantic
 
 # Optional: For RAG features
-langchain>=0.1.0
+langchain
 
 # Optional: Testing
-pytest>=7.4.0
+pytest

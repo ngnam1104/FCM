@@ -31,65 +31,58 @@ def extract_json_from_text(text: str):
         
         # 2. Sửa double curly braces {{ }} thành single { }
         text = text.replace('{{', '{').replace('}}', '}')
+
+        # 2a. Fast path: thử parse trực tiếp toàn bộ chuỗi sau khi làm sạch
+        try:
+            return json.loads(text)
+        except Exception:
+            pass
         
         # 3. Tìm đoạn nằm giữa { ... } hoặc [ ... ] đầu tiên và cuối cùng
-        # Tìm JSON Object (greedy từ { đầu đến } cuối)
         match_obj = re.search(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', text, re.DOTALL)
         if not match_obj:
-            # Thử tìm cách khác - từ { đầu tiên đến } cuối cùng
             first_brace = text.find('{')
             last_brace = text.rfind('}')
-            if first_brace != -1 and last_brace != -1 and last_brace > first_brace:
-                match_obj_str = text[first_brace:last_brace+1]
-            else:
-                match_obj_str = None
+            match_obj_str = text[first_brace:last_brace+1] if (first_brace != -1 and last_brace != -1 and last_brace > first_brace) else None
         else:
             match_obj_str = match_obj.group()
             
-        # Tìm JSON Array
         match_arr = re.search(r'\[[^\[\]]*(?:\[[^\[\]]*\][^\[\]]*)*\]', text, re.DOTALL)
         if not match_arr:
             first_bracket = text.find('[')
             last_bracket = text.rfind(']')
-            if first_bracket != -1 and last_bracket != -1 and last_bracket > first_bracket:
-                match_arr_str = text[first_bracket:last_bracket+1]
-            else:
-                match_arr_str = None
+            match_arr_str = text[first_bracket:last_bracket+1] if (first_bracket != -1 and last_bracket != -1 and last_bracket > first_bracket) else None
         else:
             match_arr_str = match_arr.group()
         
-        json_str = ""
-        
-        # Ưu tiên lấy cái nào dài hơn (thường là nội dung chính)
-        if match_obj_str and match_arr_str:
-            if len(match_obj_str) > len(match_arr_str):
-                json_str = match_obj_str
-            else:
-                json_str = match_arr_str
-        elif match_obj_str:
-            json_str = match_obj_str
-        elif match_arr_str:
-            json_str = match_arr_str
-        else:
-            # Fallback: Trả về nguyên text nếu không tìm thấy pattern
-            json_str = text.strip()
+        json_str = match_obj_str or match_arr_str or text.strip()
 
-        # 4. Thử parse JSON
+        # 4. Thử parse thô trước khi escape newline
         try:
             return json.loads(json_str)
-        except json.JSONDecodeError:
-            # Thử sửa một số lỗi phổ biến
-            # Thay single quotes bằng double quotes
-            json_str_fixed = json_str.replace("'", '"')
-            # Xóa trailing commas
-            json_str_fixed = re.sub(r',\s*([}\]])', r'\1', json_str_fixed)
-            return json.loads(json_str_fixed)
-            
-    except json.JSONDecodeError as e:
-        logger.error(f"JSON Decode Error: {e} | Content: {text[:100]}...")
-        return None
+        except Exception:
+            pass
+
+        # 5. Escape control characters rồi thử lại
+        json_esc = json_str.replace('\r\n', '\\n').replace('\r', '\\n').replace('\n', '\\n')
+        json_esc = json_esc.replace('\t', '\\t')
+        try:
+            return json.loads(json_esc)
+        except Exception:
+            pass
+        
+        # 6. Sửa lỗi phổ biến: single quotes, trailing commas
+        json_fix = re.sub(r"'(\w+)':", r'"\1":', json_esc)
+        json_fix = re.sub(r":\s*'([^']*)'", r': "\1"', json_fix)
+        json_fix = re.sub(r',\s*([}\]])', r'\1', json_fix)
+        try:
+            return json.loads(json_fix)
+        except Exception:
+            print(f"JSON Decode Error: Cannot parse | Content: {json_str[:100]}...")
+            return None
+
     except Exception as e:
-        logger.error(f"Extract JSON Error: {e}")
+        print(f"Extract JSON Error: {e}")
         return None
 
 

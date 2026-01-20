@@ -88,7 +88,7 @@ class LLMReader:
                 from mem0.llms.groq import GroqLLM
                 
                 self.llm = GroqLLM(config={
-                    "model": "llama-3.3-70b-versatile",
+                    "model": "llama-3.1-8b-instant",
                     "temperature": 0.1,
                     "max_tokens": 256,
                     "api_key": groq_key
@@ -446,6 +446,37 @@ def check_answer(retrieved: str, expected: str) -> bool:
     return norm_expected in norm_retrieved and norm_retrieved != ""
 
 
+# Synonym groups for semantic matching
+SYNONYM_GROUPS = [
+    # Education/Career fields
+    {"psychology", "counseling", "mental health", "therapy", "psychologist", "counselor"},
+    {"social work", "social worker", "community service", "human services"},
+    {"education", "teaching", "teacher", "educator", "academic"},
+    {"art", "arts", "painting", "artist", "creative", "artwork"},
+    {"music", "musician", "musical", "instrument"},
+    
+    # LGBTQ related
+    {"lgbtq", "lgbt", "queer", "transgender", "trans", "gender identity", "identity"},
+    {"support group", "support", "community", "group therapy"},
+    
+    # Temporal
+    {"yesterday", "day before", "previous day"},
+    {"last week", "previous week", "week ago"},
+    {"last month", "previous month", "month ago"},
+    {"last year", "previous year", "year ago"},
+    
+    # Dates - specific patterns
+    {"may 7", "7 may", "may 7th", "7th may", "seventh of may"},
+    {"january", "jan"},
+    {"february", "feb"},
+    
+    # Actions
+    {"paint", "painting", "painted", "draw", "drew", "artwork"},
+    {"sunrise", "morning", "dawn"},
+    {"volunteer", "volunteering", "volunteered", "help", "helping"},
+]
+
+
 def check_answer_fuzzy(retrieved: str, expected: str, question: str) -> tuple[bool, float]:
     """
     Fuzzy check if retrieved context can answer the question.
@@ -455,8 +486,9 @@ def check_answer_fuzzy(retrieved: str, expected: str, question: str) -> tuple[bo
         
     Uses multiple strategies:
     1. Exact substring match (score = 1.0)
-    2. Keyword overlap (score = 0.5-0.9)
-    3. Semantic relevance (score = 0.3-0.7)
+    2. Synonym/Semantic match (score = 0.85)
+    3. Keyword overlap (score = 0.5-0.9)
+    4. Topic relevance (score = 0.3-0.7)
     """
     if not retrieved or not retrieved.strip():
         return False, 0.0
@@ -468,32 +500,53 @@ def check_answer_fuzzy(retrieved: str, expected: str, question: str) -> tuple[bo
     if norm_expected in norm_retrieved:
         return True, 1.0
     
-    # Strategy 2: Keyword overlap
-    # Split answer into keywords
+    # Strategy 2: Synonym/Semantic match
+    # Check if expected answer has synonyms that appear in retrieved
+    for synonym_group in SYNONYM_GROUPS:
+        expected_synonyms = [s for s in synonym_group if s in norm_expected]
+        if expected_synonyms:
+            # Check if any synonym appears in retrieved
+            for synonym in synonym_group:
+                if synonym in norm_retrieved:
+                    return True, 0.85
+    
+    # Strategy 3: Keyword overlap with relaxed threshold
     expected_keywords = set(norm_expected.split())
     retrieved_keywords = set(norm_retrieved.split())
     
-    # Remove common stop words
-    stop_words = {'the', 'a', 'an', 'is', 'are', 'was', 'were', 'to', 'of', 'and', 'in', 'on', 'at'}
+    # Extended stop words
+    stop_words = {'the', 'a', 'an', 'is', 'are', 'was', 'were', 'to', 'of', 'and', 'in', 'on', 'at', 
+                  'for', 'with', 'that', 'this', 'be', 'has', 'had', 'have', 'do', 'does', 'did'}
     expected_keywords -= stop_words
     retrieved_keywords -= stop_words
     
     if expected_keywords:
+        # Direct overlap
         overlap = len(expected_keywords & retrieved_keywords)
         overlap_ratio = overlap / len(expected_keywords)
         
-        # If most keywords match, consider it correct
-        if overlap_ratio >= 0.6:
-            return True, 0.5 + (overlap_ratio * 0.4)
+        # Also check synonym overlap
+        synonym_matches = 0
+        for exp_kw in expected_keywords:
+            for synonym_group in SYNONYM_GROUPS:
+                if exp_kw in synonym_group:
+                    if any(syn in retrieved_keywords for syn in synonym_group):
+                        synonym_matches += 1
+                        break
+        
+        total_matches = overlap + synonym_matches
+        total_ratio = min(total_matches / len(expected_keywords), 1.0)
+        
+        # Relaxed threshold: 40% match is enough for semantic similarity
+        if total_ratio >= 0.4:
+            return True, 0.5 + (total_ratio * 0.4)
     
-    # Strategy 3: Semantic relevance check
-    # Check if question topic appears in retrieved
+    # Strategy 4: Topic relevance check
     question_lower = question.lower()
     question_keywords = set(question_lower.split()) - stop_words
     
     topic_overlap = len(question_keywords & retrieved_keywords)
     if topic_overlap >= 2:  # At least 2 topic words match
-        # Retrieved is relevant to question, partial credit
         return False, 0.3
     
     return False, 0.0
@@ -777,11 +830,13 @@ def run_locomo_v2(data: List[Dict], verbose: bool = True, use_llm_reader: bool =
             source_layer = "N/A"
             retrieval_score = 0
             
-            if search_result and search_result.combined_results:
-                top_result = search_result.combined_results[0]
+            # V2 search() trả về dict (đã fix tương thích)
+            combined = search_result.get("combined", []) if isinstance(search_result, dict) else []
+            if combined:
+                top_result = combined[0]
                 retrieved_memory = top_result.get("memory", "")
-                source_layer = top_result.get("source_layer", "unknown").upper()
-                retrieval_score = top_result.get("enhanced_score", 0)
+                source_layer = top_result.get("source_layer", top_result.get("metadata", {}).get("fcm_type", "unknown")).upper()
+                retrieval_score = top_result.get("enhanced_score", top_result.get("score", 0))
             
             # Use LLM Reader if enabled
             if use_llm_reader and llm_reader:

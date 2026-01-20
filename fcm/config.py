@@ -38,7 +38,7 @@ class FCMConfig:
     
     # === LLM Configuration ===
     llm_provider: str = "groq"  # groq, openai, gemini
-    llm_model: str = "llama-3.3-70b-versatile"  # 70B model cho extraction tốt hơn
+    llm_model: str = "llama-3.1-8b-instant"  # 8B model nhanh, ít rate limit
     temperature: float = 0.1  # Temperature thấp cho task extraction
     max_tokens: int = 4000
     
