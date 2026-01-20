@@ -182,7 +182,6 @@ notebooks/*.yaml
 *.db
 
 # local directories for testing
-eval/
 qdrant_storage/
 .crossnote
 testing.ipynb
