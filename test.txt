@@ -1,0 +1,99 @@
+1:
+Tôi tên là Hoàng Minh, sinh ngày 15/08/1995.
+Hiện tại tôi đang sống tại căn hộ số 12 ở Quận Cầu Giấy, Hà Nội.
+Tôi là một kỹ sư cầu nối (BrSE)
+Món ăn tôi ghét nhất là hành tây, làm ơn đừng bao giờ cho hành vào bát của tôi.
+Cuối tuần này tôi dự định sẽ đi cắm trại ở hồ Đồng Mô.
+
+QA:
+Hoàng Minh làm nghề gì? -> Kỹ sư cầu nối / BrSE.
+Tôi có nên mời Minh ăn phở nhiều hành không? -> Không, vì Minh ghét hành tây.
+Minh sinh năm bao nhiêu? -> 1995.
+
+2: 
+Dự án khởi nghiệp của chúng tôi tên là "GreenRoof", bắt đầu vào ngày 01/01/2024.
+Mục tiêu của GreenRoof là phủ xanh các mái nhà tại TP.HCM bằng công nghệ thủy canh.
+Đội ngũ sáng lập gồm 3 người: Tôi (CEO), Lan (CMO) và Hùng (CTO).
+Tháng 2/2024, chúng tôi đã gọi vốn thành công 50.000 USD từ quỹ Shark Tank.
+Tuy nhiên, vào tháng 3/2024, Hùng gặp tai nạn xe máy nên tiến độ kỹ thuật bị chậm lại.
+Chúng tôi phải thuê thêm một freelancer tên là Tuấn để code backend bằng Python.
+Hệ thống IoT cảm biến độ ẩm bị lỗi vào ngày 15/04, khiến cây trồng thử nghiệm bị chết héo.
+Lan đã đề xuất chuyển sang dùng cảm biến nhập khẩu từ Đức thay vì hàng Trung Quốc.
+Đến tháng 5/2024, phiên bản thử nghiệm v1.0 cuối cùng cũng hoàn thành.
+Chúng tôi đã lắp đặt thử nghiệm tại tòa nhà Bitexco vào ngày 01/06.
+Kết quả rất khả quan, nhiệt độ mái nhà giảm được 5 độ C.
+Khách hàng đầu tiên của chúng tôi là chuỗi khách sạn A, họ ký hợp đồng vào tháng 7.
+Doanh thu tháng đầu tiên đạt 200 triệu đồng.
+Chúng tôi dự định mở rộng ra Đà Nẵng vào cuối năm 2024.
+Hiện tại, Hùng đã quay trở lại làm việc và đang phát triển app mobile bằng Flutter.
+Tuấn freelancer đã chính thức trở thành nhân viên chính thức.
+Văn phòng của chúng tôi vừa chuyển từ quán cafe sang Coworking Space ở Quận 1.
+Sắp tới ngày 20/11, chúng tôi sẽ tổ chức tiệc tri ân khách hàng.
+Tôi đang lo lắng về vấn đề dòng tiền cho năm sau.
+Dù sao thì GreenRoof cũng đã vượt qua giai đoạn khó khăn nhất.
+
+QA:
+Ai là CTO của GreenRoof? -> Hùng.
+Sự cố gì xảy ra vào tháng 3/2024? -> Hùng gặp tai nạn xe máy / Tiến độ chậm.
+Dự án dùng công nghệ gì cho backend? -> Python (do Tuấn code).
+Khách hàng đầu tiên là ai? -> Chuỗi khách sạn A.
+
+3: 
+
+Năm 2018, tôi tốt nghiệp đại học Kinh tế Quốc dân với tấm bằng loại giỏi.
+Công việc đầu tiên của tôi là nhân viên Sales bất động sản tại VinHomes.
+Thời gian đó tôi làm việc 12 tiếng mỗi ngày, rất áp lực và mệt mỏi.
+Sếp cũ của tôi tên là Long, ông ấy rất khó tính và hay quát mắng nhân viên.
+Tôi đã bán được căn biệt thự đầu tiên vào tháng 12/2019 và nhận hoa hồng 100 triệu.
+Số tiền đó tôi dùng để mua một chiếc xe máy SH và một chiếc laptop Macbook.
+Năm 2020 đại dịch Covid ập đến, thị trường đóng băng hoàn toàn.
+Tôi thất nghiệp và phải nằm nhà suốt 6 tháng trời.
+Lúc đó tôi bắt đầu bị trầm cảm nhẹ và mất ngủ triền miên.
+Tôi quyết định bỏ nghề Sales và về quê ở Nam Định để "chữa lành".
+Ở quê, tôi học cách trồng rau nuôi cá cùng bố mẹ.
+Mẹ tôi bị đau khớp nên tôi thường phải chở bà đi châm cứu vào thứ 3 hàng tuần.
+Tháng 5/2021, tôi bắt đầu tự học lập trình Web qua khóa học trên Udemy.
+Tôi thấy mình rất thích logic của Code, khác hẳn với việc phải khéo miệng khi làm Sales.
+Tôi học HTML, CSS và JavaScript điên cuồng trong 3 tháng.
+Tháng 9/2021, tôi xin được việc thực tập tại công ty FPT Software ở Hà Nội.
+Lương thực tập chỉ có 5 triệu thôi nhưng tôi thấy rất vui.
+Tôi thuê một phòng trọ nhỏ ở ngõ 175 Xuân Thủy.
+Tại đây tôi gặp vợ tôi bây giờ, cô ấy tên là Mai, làm giáo viên tiếng Anh.
+Chúng tôi kết hôn vào cuối năm 2022 sau 1 năm yêu nhau.
+Đám cưới tổ chức đơn giản vì cả hai đều muốn tiết kiệm tiền mua nhà.
+Năm 2023, tôi được thăng chức lên làm Junior Developer.
+Tôi chuyển sang dùng framework ReactJS và NextJS cho các dự án công ty.
+Vợ tôi lúc này đang mang bầu bé đầu lòng, chúng tôi đặt tên ở nhà cho bé là "Bơ".
+Tôi bắt đầu quan tâm nhiều hơn đến sức khỏe và chế độ dinh dưỡng.
+Tôi bỏ thuốc lá hoàn toàn từ ngày biết tin vợ có bầu.
+Mỗi sáng tôi dậy lúc 6h để chạy bộ quanh công viên Cầu Giấy.
+Kỷ lục chạy bộ của tôi là 10km trong vòng 60 phút.
+Gần đây tôi đang nghiên cứu thêm về AI và Machine Learning.
+Tôi muốn tích hợp AI vào các sản phẩm Web của mình.
+Tôi đang học cách dùng thư viện LangChain và mô hình Llama.
+Máy tính của tôi hơi yếu, không chạy được model 70B parameters.
+Tôi đang định xin vợ 50 triệu để build PC mới có GPU 4090.
+Nhưng chắc là khó vì chúng tôi đang cần tiền để lo cho bé Bơ đi nhà trẻ.
+Bơ năm nay đã 2 tuổi, rất nghịch ngợm và thích xem CoComelon.
+Tuần trước Bơ bị sốt virus làm hai vợ chồng lo sốt vó.
+Bác sĩ bảo cần bổ sung thêm Vitamin C cho bé.
+Ngoài công việc chính, tôi còn nhận thêm job freelance vào buổi tối.
+Tôi làm website cho một tiệm nail ở Mỹ, họ trả tôi 500$.
+Số tiền này tôi lén đút lợn để dành mua GPU (đừng nói với vợ tôi nhé).
+Sở thích mới của tôi là chơi bàn phím cơ custom.
+Tôi vừa mua một con phím Keychron Q1 Pro, gõ rất sướng tay.
+Tôi thích switch loại tactile vì nó có khấc phản hồi.
+Vợ tôi hay phàn nàn vì tiếng gõ phím lạch cạch vào ban đêm.
+Tôi hứa sẽ mua switch silent để không làm ồn nữa.
+Mục tiêu năm 2025 của tôi là trở thành Senior Developer.
+Và hy vọng là gia đình tôi sẽ mua được một căn chung cư trả góp ở mạn Hà Đông.
+Cuộc sống tuy vất vả nhưng tôi thấy hạnh phúc với những gì mình đang có.
+Cảm ơn bạn đã lắng nghe câu chuyện dài dòng này của tôi.
+
+QA:
+Vợ tôi tên gì và làm nghề gì? -> Mai, giáo viên tiếng Anh.
+Bé Bơ bao nhiêu tuổi? -> 2 tuổi.
+Tôi từng làm nghề gì trước khi làm IT? -> Sales bất động sản (tại VinHomes).
+Tại sao tôi lại bỏ thuốc lá? -> Vì vợ mang bầu.
+Kế hoạch tài chính bí mật của tôi là gì? -> Dùng tiền freelance (500$) để mua GPU/PC mới.
+Tôi đang sống ở đâu và muốn mua nhà ở đâu? -> Đang trọ ở Xuân Thủy (hoặc Hà Nội), muốn mua nhà ở Hà Đông.

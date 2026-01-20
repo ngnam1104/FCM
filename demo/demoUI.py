@@ -108,38 +108,57 @@ def is_question(text: str) -> bool:
 
 
 def generate_answer_from_context(query: str, results: list, agent) -> str:
-    """Generate answer from search results using LLM"""
+    """Generate answer using Top-K RAG (Updated to match Locomo logic)"""
     if not results:
         return "Tôi chưa có thông tin về điều này trong bộ nhớ."
     
-    # Build context from top results
+    # 1. Context Window Expansion: Lấy Top 5 kết quả tốt nhất
     context_parts = []
+    # Dùng .get() an toàn cho cả Dict và Object
     for i, r in enumerate(results[:5]):
-        mem = r.get('memory', '')
+        if isinstance(r, dict):
+            mem = r.get('memory', '')
+        else:
+            # Fallback nếu r là object Pydantic
+            mem = getattr(r, 'memory', str(r))
+            
         if mem:
             context_parts.append(f"- {mem}")
     
     context_text = "\n".join(context_parts)
     
-    # Use LLM to generate answer
+    # 2. Gọi LLM (Dùng model 8b-instant để tránh Rate Limit và Fallback)
     try:
         from mem0.llms.groq import GroqLLM
-        llm = GroqLLM(config={"model": "llama-3.3-70b-versatile", "temperature": 0.3})
+        # CHUYỂN VỀ MODEL NHẸ HƠN ĐỂ TRÁNH LỖI RATE LIMIT -> TRÁNH FALLBACK TOP 1
+        llm = GroqLLM(config={
+            "model": "llama-3.1-8b-instant", 
+            "temperature": 0.1,
+            "api_key": os.getenv("GROQ_API_KEY")
+        })
         
-        prompt = f"""Dựa vào thông tin trong bộ nhớ sau, hãy trả lời câu hỏi một cách ngắn gọn và chính xác.
+        # Prompt nâng cao giống Locomo
+        prompt = f"""Bạn là trợ lý AI hữu ích. Dựa VÀO BỘ NHỚ ĐƯỢC CUNG CẤP bên dưới, hãy trả lời câu hỏi.
 
-BỘ NHỚ:
+BỘ NHỚ (Context):
 {context_text}
 
 CÂU HỎI: {query}
 
-TRẢ LỜI (ngắn gọn, chính xác, bằng tiếng Việt):"""
+YÊU CẦU:
+1. Chỉ trả lời dựa trên thông tin trong bộ nhớ.
+2. Nếu bộ nhớ không có thông tin, hãy nói "Tôi chưa có thông tin này".
+3. Trả lời ngắn gọn, đi thẳng vào vấn đề.
+
+TRẢ LỜI:"""
         
         response = llm.generate_response([{"role": "user", "content": prompt}])
         return response.strip()
+        
     except Exception as e:
-        # Fallback: return top memory
-        return results[0].get('memory', 'Không tìm thấy thông tin.')
+        print(f"❌ LLM Error: {e}")
+        # Fallback thông minh hơn: Trả về toàn bộ context tìm được thay vì chỉ dòng đầu
+        return f"Tìm thấy thông tin liên quan:\n{context_text}"
 
 
 def cleanup_agent():
@@ -365,7 +384,11 @@ with col_chat:
                 elapsed = time.time() - start_time
                 
                 # Search for relevant memories
-                search_results = st.session_state.agent.search(prompt, strategy="enhanced")
+                search_results = st.session_state.agent.search(
+                    prompt, 
+                    strategy="enhanced", 
+                    limit=10  # <--- QUAN TRỌNG: Lấy 10 kết quả để lọc
+                )
                 combined = search_results.get('combined', []) if isinstance(search_results, dict) else []
                 
                 # Log top results to console

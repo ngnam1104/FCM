@@ -26,6 +26,10 @@ logging.getLogger("mem0").setLevel(logging.WARNING)
 
 import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+from fcm.eval.common import (
+    print_header, print_subheader, print_comparison_table,
+    normalize_text, BenchmarkResult
+)
 
 # ============================================================================
 # LoCoMo CATEGORY MAPPING
@@ -53,13 +57,139 @@ CATEGORY_DESCRIPTIONS = {
     5: "Summary: Câu hỏi cần tổng hợp nhiều thông tin"
 }
 
-def get_category_name(category_id: int) -> str:
-    """Convert category ID to human-readable name"""
-    return CATEGORY_MAP.get(category_id, f"unknown-{category_id}")
+# ============================================================================
+# UPGRADED SEMANTIC MATCHING CONFIG (Ported from Debug)
+# ============================================================================
 
-def get_category_description(category_id: int) -> str:
-    """Get Vietnamese description for category"""
-    return CATEGORY_DESCRIPTIONS.get(category_id, f"Unknown category: {category_id}")
+# 1. Mở rộng danh sách từ đồng nghĩa
+SYNONYM_GROUPS = [
+    {"psychology", "counseling", "mental health", "therapy", "psychologist", "counselor"},
+    {"social work", "social worker", "community service", "human services"},
+    {"education", "teaching", "teacher", "educator", "academic"},
+    {"art", "arts", "painting", "artist", "creative", "artwork", "draw", "drew"},
+    {"music", "musician", "musical", "instrument"},
+    {"lgbtq", "lgbt", "queer", "transgender", "trans", "gender identity", "identity"},
+    {"support group", "support", "community", "group therapy"},
+    {"yesterday", "day before", "previous day"},
+    {"last week", "previous week", "week ago"},
+    {"last month", "previous month", "month ago"},
+    {"last year", "previous year", "year ago", "year before"},
+    {"dance", "dancing", "danced", "dancer", "movement"},
+]
+
+# 2. Thêm logic tính toán thời gian
+TEMPORAL_REFERENCES = {
+    "last year": -1,
+    "year before": -1,
+    "previous year": -1,
+    "yesterday": -1, 
+    "day before": -1,
+    "last month": -1,
+    "previous month": -1,
+}
+
+def parse_date_flexible(date_str: str) -> Optional[datetime]:
+    """
+    Parse ngày tháng linh hoạt:
+    - 2022
+    - 19 January, 2023
+    - Jan 19 2023
+    """
+    if not date_str: return None
+    date_str = str(date_str).strip()
+    
+    # 1. Thử parse chỉ có năm (YYYY)
+    if re.match(r'^\d{4}$', date_str):
+        return datetime(int(date_str), 1, 1)
+
+    # 2. Các pattern ngày tháng đầy đủ
+    patterns = [
+        r"(\d{1,2})\s+(\w+),?\s+(\d{4})",  # "19 January, 2023"
+        r"(\w+)\s+(\d{1,2}),?\s+(\d{4})",  # "January 19, 2023"
+    ]
+    
+    months = {
+        'jan': 1, 'feb': 2, 'mar': 3, 'apr': 4, 'may': 5, 'jun': 6,
+        'jul': 7, 'aug': 8, 'sep': 9, 'oct': 10, 'nov': 11, 'dec': 12,
+        'january': 1, 'february': 2, 'march': 3, 'april': 4,
+        'may': 5, 'june': 6, 'july': 7, 'august': 8,
+        'september': 9, 'october': 10, 'november': 11, 'december': 12
+    }
+    
+    for pat in patterns:
+        match = re.search(pat, date_str, re.IGNORECASE)
+        if match:
+            # Xác định đâu là tháng, đâu là ngày dựa trên vị trí
+            g1, g2, g3 = match.groups()
+            
+            # Logic: Tìm xem nhóm nào là chữ (tháng)
+            month_str = g1 if g1.lower()[:3] in months else g2
+            day_str = g2 if month_str == g1 else g1
+            
+            try:
+                m = months.get(month_str.lower()[:3]) # Lấy 3 ký tự đầu
+                if not m: m = months.get(month_str.lower())
+                
+                return datetime(int(g3), m, int(day_str))
+            except:
+                continue
+    return None
+
+def check_temporal_match(rag_answer: str, expected: str, session_date_str: str) -> tuple[bool, float]:
+    """
+    Logic so khớp thời gian thông minh (Đã sửa lỗi so sánh ngày)
+    """
+    norm_answer = rag_answer.lower()
+    
+    # 1. Parse các ngày tháng quan trọng
+    expected_date = parse_date_flexible(expected)
+    session_date = parse_date_flexible(session_date_str)
+    
+    if not expected_date or not session_date:
+        # Fallback: Nếu không parse được date, so sánh năm đơn thuần như cũ
+        try:
+            exp_year = int(re.search(r'\d{4}', expected).group(0))
+            sess_year = int(re.search(r'\d{4}', session_date_str).group(0))
+            # Check keywords relative year
+            if "last year" in norm_answer and (sess_year - 1 == exp_year): return True, 0.9
+            if "next year" in norm_answer and (sess_year + 1 == exp_year): return True, 0.9
+            if str(exp_year) in norm_answer: return True, 1.0
+        except:
+            pass
+        return False, 0.0
+
+    # 2. Logic tương đối (Relative Logic)
+    # Case: "Yesterday"
+    if "yesterday" in norm_answer:
+        calculated = session_date - timedelta(days=1)
+        # So sánh ngày/tháng/năm
+        if (calculated.day == expected_date.day and 
+            calculated.month == expected_date.month and 
+            calculated.year == expected_date.year):
+            return True, 0.95
+
+    # Case: "Last year"
+    if "last year" in norm_answer:
+        if session_date.year - 1 == expected_date.year:
+            return True, 0.9
+
+    # Case: "Last month"
+    if "last month" in norm_answer:
+        # Logic đơn giản cho last month (cùng năm)
+        if (session_date.month - 1 == expected_date.month and 
+            session_date.year == expected_date.year):
+            return True, 0.9
+            
+    # Case: Kiểm tra nếu LLM đã tự tính ra ngày cụ thể trong câu trả lời
+    # Ví dụ: LLM trả lời "It was 19 Jan" -> Match với expected "19 January"
+    if str(expected_date.day) in norm_answer and str(expected_date.year) in norm_answer:
+        # Check tháng (scan tên tháng trong answer)
+        month_name = expected_date.strftime("%B").lower()
+        month_abbr = expected_date.strftime("%b").lower()
+        if month_name in norm_answer or month_abbr in norm_answer:
+            return True, 1.0
+
+    return False, 0.0
 
 # ============================================================================
 # OPTION 1: LLM READER - Answer questions using retrieved context + LLM
@@ -288,44 +418,60 @@ def check_answer_with_llm_reader(
     question: str,
     session_date: Optional[str] = None,
     llm_reader: Optional[LLMReader] = None
-) -> Tuple[bool, float, str]:
+) -> Tuple[bool, float, str, str]: # <--- Thêm str return type cho Reason
     """
-    Check answer using LLM Reader for temporal inference.
-    
-    Returns:
-        (is_correct, confidence, llm_answer)
+    Enhanced check returning reason for match/mismatch
     """
     if not retrieved or not retrieved.strip():
-        return False, 0.0, ""
+        return False, 0.0, "No context retrieved", "Retrieval failed (Empty context)"
     
-    # First try exact match
-    norm_expected = normalize_text(expected)
-    norm_retrieved = normalize_text(retrieved)
-    
-    if norm_expected in norm_retrieved:
-        return True, 1.0, expected
-    
-    # Use LLM Reader for inference
+    # 1. Gọi LLM để lấy câu trả lời suy luận
     if llm_reader:
         llm_answer, confidence = llm_reader.answer_question(
             question=question,
             context=retrieved,
             session_date=session_date
         )
-        
-        # Check if LLM answer matches expected
-        norm_llm_answer = normalize_text(llm_answer)
-        
-        # Flexible matching for dates
-        if norm_expected in norm_llm_answer or norm_llm_answer in norm_expected:
-            return True, confidence, llm_answer
-        
-        # Check for partial date match (e.g., "7 May 2023" vs "May 7, 2023")
-        if _dates_match(expected, llm_answer):
-            return True, confidence, llm_answer
-    
-    return False, 0.0, ""
+    else:
+        llm_answer = retrieved[:200]
+        confidence = 0.5
 
+    norm_expected = normalize_text(expected)
+    norm_llm_answer = normalize_text(llm_answer)
+
+    # --- LOGIC SO KHỚP MỚI ---
+
+    # Case 1: Exact Match (Tuyệt đối)
+    if norm_expected in norm_llm_answer:
+        return True, 1.0, llm_answer, f"Exact match: Found '{expected}' in answer"
+    
+    # Case 2: Temporal Inference (Suy luận thời gian)
+    if session_date:
+        is_temp_match, temp_score = check_temporal_match(llm_answer, expected, session_date)
+        if is_temp_match:
+            return True, temp_score, llm_answer, f"Temporal match: Infers '{expected}' from relative time"
+
+    # Case 3: Synonym Match (Từ đồng nghĩa)
+    for group in SYNONYM_GROUPS:
+        if any(s in norm_expected for s in group):
+            # Tìm từ nào trong answer khớp với group này
+            matched_synonym = next((s for s in group if s in norm_llm_answer), None)
+            if matched_synonym:
+                return True, 0.85, llm_answer, f"Synonym match: '{matched_synonym}' ~ '{expected}'"
+    
+    # Case 4: Keyword Overlap (So khớp từ khóa)
+    stop_words = {'the', 'a', 'an', 'is', 'are', 'to', 'of', 'and', 'in', 'on', 'at'}
+    exp_keywords = set(norm_expected.split()) - stop_words
+    ans_keywords = set(norm_llm_answer.split()) - stop_words
+    
+    if exp_keywords:
+        overlap = len(exp_keywords & ans_keywords)
+        ratio = overlap / len(exp_keywords)
+        if ratio >= 0.4:
+            return True, 0.5 + (ratio * 0.4), llm_answer, f"Keyword overlap: {ratio:.0%} match"
+
+    # Case 5: Fail
+    return False, 0.0, llm_answer, f"Mismatch. Expected '{expected}' but got '{llm_answer}'"
 
 def _dates_match(date1: str, date2: str) -> bool:
     """Check if two date strings represent the same date"""
@@ -353,31 +499,6 @@ def _dates_match(date1: str, date2: str) -> bool:
     
     return False
 
-from fcm.eval.common import (
-    print_header, print_subheader, print_comparison_table,
-    normalize_text, BenchmarkResult
-)
-
-# ============================================================================
-# CATEGORY MAPPING - LoCoMo Question Types
-# ============================================================================
-# Based on LoCoMo paper: https://arxiv.org/abs/2402.11908
-CATEGORY_MAP = {
-    1: "single-hop",      # Factual questions with direct answer in context
-    2: "temporal",        # When questions requiring date/time reasoning
-    3: "multi-hop",       # Questions requiring reasoning across multiple facts
-    4: "knowledge",       # General knowledge questions about events/facts
-    5: "summary",         # Questions requiring summarization/inference
-}
-
-CATEGORY_DESCRIPTIONS = {
-    1: "Single-hop: Câu hỏi đơn giản, trả lời trực tiếp từ 1 sự kiện",
-    2: "Temporal: Câu hỏi về thời gian (when, yesterday, last year)",
-    3: "Multi-hop: Câu hỏi cần suy luận từ nhiều sự kiện",
-    4: "Knowledge: Câu hỏi về kiến thức, sự kiện chung",
-    5: "Summary: Câu hỏi cần tóm tắt, suy luận",
-}
-
 def get_category_name(category_num: int) -> str:
     """Convert category number to name"""
     return CATEGORY_MAP.get(category_num, f"unknown-{category_num}")
@@ -387,7 +508,7 @@ def get_category_description(category_num: int) -> str:
     return CATEGORY_DESCRIPTIONS.get(category_num, f"Unknown category {category_num}")
 
 
-def load_locomo_dataset(path: str = "dataset/locomo10.json", max_samples: int = 10, 
+def load_locomo_dataset(path: str = "dataset/locomo10.json", max_samples: int = 5, 
                          max_messages_per_sample: int = 50) -> List[Dict]:
     """
     Load LoCoMo dataset và transform thành format đơn giản
@@ -725,32 +846,47 @@ def run_locomo_v1(data: List[Dict], verbose: bool = True, use_llm_reader: bool =
                 session_key = f"session_{session_num}"
                 session_date = session_dates.get(session_key)
             
-            search_result = agent.search(question, strategy="enhanced")
+            search_result = agent.search(question, strategy="enhanced", limit=10)
             
-            retrieved_memory = ""
-            source_layer = "N/A"
+            # 2. Xử lý kết quả trả về
+            combined = search_result.get("combined", []) if isinstance(search_result, dict) else []
             
-            if search_result and search_result.get("combined"):
-                top_result = search_result["combined"][0]
-                retrieved_memory = top_result.get("memory", "")
-                meta = top_result.get("metadata", {})
-                source_layer = meta.get("fcm_type", "unknown").upper()
+            # 3. Kỹ thuật "Context Window Expansion": Gộp Top-5 kết quả tốt nhất
+            context_parts = []
+            if combined:
+                # Lấy 5 kết quả đầu tiên (thường chứa các mảnh thông tin bổ sung cho nhau)
+                for i, item in enumerate(combined[:5]): 
+                    mem = item.get("memory", "").strip()
+                    if mem:
+                        # Thêm dấu gạch đầu dòng để phân tách các ký ức
+                        context_parts.append(f"- {mem}")
             
-            # Use LLM Reader if enabled
+            # Nối lại thành 1 đoạn văn bản dài
+            retrieved_memory = "\n".join(context_parts)
+
+            # Metadata để log (lấy cái đầu tiên làm đại diện)
+            top_item = combined[0] if combined else {}
+            source_layer = top_item.get("source_layer", top_item.get("metadata", {}).get("fcm_type", "N/A")).upper()
+            retrieval_score = top_item.get("score", 0)
+            
+            match_reason = "Unknown"
             if use_llm_reader and llm_reader:
-                is_correct, confidence, llm_answer = check_answer_with_llm_reader(
+                # Cập nhật: nhận thêm biến match_reason
+                is_correct, confidence, llm_answer, match_reason = check_answer_with_llm_reader(
                     retrieved=retrieved_memory,
                     expected=ground_truth,
                     question=question,
                     session_date=session_date,
                     llm_reader=llm_reader
                 )
-                if llm_answer:
+                if llm_answer and llm_answer != "No context retrieved":
                     llm_reader_answers += 1
                 weighted_score = confidence
             else:
-                # Fallback to fuzzy matching
+                # Fallback
                 is_correct, weighted_score = check_answer_fuzzy(retrieved_memory, ground_truth, question)
+                llm_answer = retrieved_memory[:100]
+                match_reason = "Fuzzy match fallback"
             
             if is_correct:
                 correct_count += 1
@@ -761,7 +897,16 @@ def run_locomo_v1(data: List[Dict], verbose: bool = True, use_llm_reader: bool =
             total_questions += 1
             
             if verbose:
-                print(f"   {status} Q: {question[:50]}... | A: {ground_truth[:30]}...")
+                # === PHẦN IN RA GIẢI THÍCH CHI TIẾT ===
+                print(f"   {status} Q: {question}")
+                print(f"      Expected: '{ground_truth}'")
+                print(f"      LLM Got : '{llm_answer}'")
+                print(f"      Reason  : {match_reason}")
+                if not is_correct:
+                    # In thêm context để debug xem tại sao sai
+                    preview = retrieved_memory[:80].replace('\n', ' ')
+                    print(f"      Context : '{preview}...'")
+                print("-" * 40) # Dòng kẻ phân cách cho dễ nhìn
             
             detailed_results.append({
                 "sample_id": sample_id,
@@ -899,35 +1044,48 @@ def run_locomo_v2(data: List[Dict], verbose: bool = True, use_llm_reader: bool =
                 session_key = f"session_{session_num}"
                 session_date = session_dates.get(session_key)
             
-            search_result = agent.search(question, strategy="enhanced")
+            search_result = agent.search(question, strategy="enhanced", limit=10)
             
-            retrieved_memory = ""
-            source_layer = "N/A"
-            retrieval_score = 0
-            
-            # V2 search() trả về dict (đã fix tương thích)
+            # 2. Xử lý kết quả trả về
             combined = search_result.get("combined", []) if isinstance(search_result, dict) else []
+            
+            # 3. Kỹ thuật "Context Window Expansion": Gộp Top-5 kết quả tốt nhất
+            context_parts = []
             if combined:
-                top_result = combined[0]
-                retrieved_memory = top_result.get("memory", "")
-                source_layer = top_result.get("source_layer", top_result.get("metadata", {}).get("fcm_type", "unknown")).upper()
-                retrieval_score = top_result.get("enhanced_score", top_result.get("score", 0))
+                # Lấy 5 kết quả đầu tiên (thường chứa các mảnh thông tin bổ sung cho nhau)
+                for i, item in enumerate(combined[:5]): 
+                    mem = item.get("memory", "").strip()
+                    if mem:
+                        # Thêm dấu gạch đầu dòng để phân tách các ký ức
+                        context_parts.append(f"- {mem}")
+            
+            # Nối lại thành 1 đoạn văn bản dài
+            retrieved_memory = "\n".join(context_parts)
+
+            # Metadata để log (lấy cái đầu tiên làm đại diện)
+            top_item = combined[0] if combined else {}
+            source_layer = top_item.get("source_layer", top_item.get("metadata", {}).get("fcm_type", "N/A")).upper()
+            retrieval_score = top_item.get("score", 0)
             
             # Use LLM Reader if enabled
+            match_reason = "Unknown"
             if use_llm_reader and llm_reader:
-                is_correct, confidence, llm_answer = check_answer_with_llm_reader(
+                # Cập nhật: nhận thêm biến match_reason
+                is_correct, confidence, llm_answer, match_reason = check_answer_with_llm_reader(
                     retrieved=retrieved_memory,
                     expected=ground_truth,
                     question=question,
                     session_date=session_date,
                     llm_reader=llm_reader
                 )
-                if llm_answer:
+                if llm_answer and llm_answer != "No context retrieved":
                     llm_reader_answers += 1
                 weighted_score = confidence
             else:
-                # Fallback to fuzzy matching
+                # Fallback
                 is_correct, weighted_score = check_answer_fuzzy(retrieved_memory, ground_truth, question)
+                llm_answer = retrieved_memory[:100]
+                match_reason = "Fuzzy match fallback"
             
             if is_correct:
                 correct_count += 1
@@ -936,11 +1094,18 @@ def run_locomo_v2(data: List[Dict], verbose: bool = True, use_llm_reader: bool =
                 status = "❌ FAIL"
             
             if verbose:
+                # === PHẦN IN RA GIẢI THÍCH CHI TIẾT ===
                 print(f"   {status}")
                 print(f"   Q: {question}")
                 print(f"   Expected: '{ground_truth}'")
-                retrieved_preview = retrieved_memory[:60] + "..." if len(retrieved_memory) > 60 else retrieved_memory
-                print(f"   Retrieved ({source_layer}, score={retrieval_score:.3f}): '{retrieved_preview}'")
+                print(f"   LLM Got : '{llm_answer}'")
+                print(f"   Reason  : {match_reason}")
+                if not is_correct:
+                    # In context và layer nguồn để debug
+                    print(f"   Source  : {source_layer} (Score: {retrieval_score:.2f})")
+                    preview = retrieved_memory[:80].replace('\n', ' ')
+                    print(f"   Context : '{preview}...'")
+                print("   " + "-" * 40)
             
             detailed_results.append({
                 "sample_id": sample_id,

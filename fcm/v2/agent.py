@@ -364,7 +364,14 @@ class FCMAgentV2:
         # UI dùng .get('combined'), còn V2 trả về 'combined_results'
         if "combined_results" in result_dict:
             result_dict["combined"] = result_dict["combined_results"]
-        
+        elif "combined" not in result_dict:
+            # Fallback nếu không có cả 2 key
+            result_dict["combined"] = []
+            
+        # Optional: Đảm bảo combined không bao giờ là None
+        if result_dict["combined"] is None:
+            result_dict["combined"] = []
+
         return result_dict
     
     def end_session(self, auto_evolve: bool = True) -> Dict[str, Any]:

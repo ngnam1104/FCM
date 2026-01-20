@@ -205,25 +205,24 @@ class FCMAgent:
     # HYBRID RETRIEVAL - Uses Enhanced Retriever (shared with V2)
     # =========================================================================
     
-    def search(self, query: str, strategy: str = "enhanced") -> Dict[str, Any]:
+    def search(self, query: str, strategy: str = "enhanced", limit: int = 10) -> Dict[str, Any]: # <--- Thêm tham số limit
         """
-        Tìm kiếm memories với Enhanced Retriever (shared với V2).
-        
-        Strategies:
-        - "enhanced": Enhanced Pipeline (default, shared with V2)
-        - "hybrid": Solid → Crystal → Liquid (legacy)
-        - "solid_first": Chỉ search Solid, fallback Crystal
-        - "all_layers": Search tất cả layers cùng lúc
-        - "recent": Ưu tiên Liquid (context gần đây)
+        Tìm kiếm memories với Enhanced Retriever.
+        Args:
+            query: Câu truy vấn
+            strategy: Chiến lược tìm kiếm
+            limit: Số lượng kết quả tối đa muốn lấy (Mặc định 10)
         """
-        self._log(f"[Search] Query: '{query[:50]}...' | Strategy: {strategy}")
+        # Log query (cắt ngắn nếu quá dài)
+        log_query = query[:50] + "..." if len(query) > 50 else query
+        self._log(f"[Search] Query: '{log_query}' | Strategy: {strategy} | Limit: {limit}")
         
         # Use Enhanced Retriever for "enhanced" strategy
         if strategy == "enhanced":
             search_result = self.enhanced_retriever.search(
                 query=query,
                 strategy="enhanced",
-                limit=10
+                limit=limit  # <--- Truyền limit vào đây thay vì hardcode số 10
             )
             return {
                 "query": query,
@@ -231,13 +230,13 @@ class FCMAgent:
                 "solid": search_result.solid_results,
                 "crystal": search_result.crystal_results,
                 "liquid": search_result.liquid_results,
-                "combined": search_result.combined_results,
+                "combined": search_result.combined_results, # List các kết quả đã rank
                 "best_source": search_result.best_source
             }
         
-        # Legacy strategies
+        # Legacy strategies (Giữ nguyên logic cũ hoặc update limit nếu các hàm con hỗ trợ)
         if strategy == "hybrid":
-            results = self._search_hybrid(query)
+            results = self._search_hybrid(query) # Bạn có thể cần update hàm con này để nhận limit
         elif strategy == "solid_first":
             results = self._search_solid_first(query)
         elif strategy == "all_layers":

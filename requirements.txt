@@ -10,7 +10,7 @@ python-dotenv
 # LLM & Embeddings
 openai
 pydantic
-
+streamlit
 # Utils
 tqdm
 
