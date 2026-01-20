@@ -1,64 +1,30 @@
 """
-Frequency-based Crystallizing Memory (FCM)
-==========================================
+FCM Package - Frequency-based Crystallizing Memory
+===================================================
 
-Kiến trúc bộ nhớ phân tầng theo tần số cập nhật, mô phỏng quá trình nhận thức của con người:
-- Liquid Layer (High-Frequency): Lưu thông tin thô, cập nhật liên tục
-- Crystal Layer (Mid-Frequency): Thông tin đã được lọc, có cấu trúc  
-- Solid Layer (Low-Frequency): Kiến thức cốt lõi, bền vững
+Unified package containing both FCM V1 and V2 implementations.
 
-Dựa trên các nghiên cứu: Nested Learning, SeCom, A-Mem, MAPLE, InfLLM
-
-Enhanced Features (v0.2.3):
-- SeCom: LLM-based Topic Shift Detection for Semantic Segmentation
-- SeCom: Auto-trigger Crystallize on Topic Shift (không cần đợi threshold)
-- SeCom/COMEDY: Conversation Compression (Compressive Memory)
-- MAPLE: Version Tracking với Linked List of Knowledge + Reflection Reasoning
-- MAPLE: Proper Archive (Delete -> Insert with archived status)
-- A-Mem: Zettelkasten Linking với keywords, context_tags, related_to
-- G-Memory: Memory History Tracing
-- Search: Client-side filtering for archived memories
-- Modular Architecture: Separate layer modules for better maintainability
+Usage:
+    from fcm.v1 import FCMAgent, FCMConfig
+    from fcm.v2 import FCMAgentV2, FCMConfigV2
+    from fcm.eval import run_locomo_comparison
 """
 
-from fcm.agent import FCMAgent
-from fcm.config import FCMConfig, get_default_fcm_config
+__version__ = "2.1.0"
 
-# Layer modules (new modular architecture)
-from fcm.liquid import LiquidLayer
-from fcm.crystal import CrystalLayer
-from fcm.solid import SolidLayer
+# Re-export commonly used classes from v1
+from fcm.v1 import FCMAgent, FCMConfig, get_default_fcm_config
 
-# Schemas
-from fcm.schemas import (
-    MemoryCategory,
-    MemoryStatus,
-    ConversationStats,
-    LiquidMessage,
-    CrystalFact,
-    SolidKnowledge,
-    CompressionResult,
-    TopicShiftResult,
-)
+# Re-export commonly used classes from v2
+from fcm.v2 import FCMAgentV2, FCMConfigV2, get_default_config_v2
 
 __all__ = [
-    # Main Agent
+    # V1
     "FCMAgent",
     "FCMConfig", 
     "get_default_fcm_config",
-    # Layer Modules
-    "LiquidLayer",
-    "CrystalLayer",
-    "SolidLayer",
-    # Schemas
-    "MemoryCategory",
-    "MemoryStatus",
-    "ConversationStats",
-    "LiquidMessage",
-    "CrystalFact",
-    "SolidKnowledge",
-    "CompressionResult",
-    "TopicShiftResult",
+    # V2
+    "FCMAgentV2",
+    "FCMConfigV2",
+    "get_default_config_v2",
 ]
-
-__version__ = "0.3.0"  # Major refactoring with modular architecture
